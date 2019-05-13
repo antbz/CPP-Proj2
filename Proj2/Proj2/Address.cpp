@@ -37,35 +37,31 @@ string Address::getLocation() const{
     return location;
 }
 
-//
-//  // metodos SET
-//
-//void Address::setStreet(string street){
-//
-//  // REQUIRES IMPLEMENTATION
-//}
-//
-//void Address::setDoorNumber(unsigned short doorNumber){
-//
-//  // REQUIRES IMPLEMENTATION
-//}
-//
-//void Address::setFloor(string floor){
-//
-//  // REQUIRES IMPLEMENTATION
-//}
-//
-//void Address::setPostalCode(string postalCode){
-//
-//  // REQUIRES IMPLEMENTATION
-//}
-//
-//void Address::setLocation(string  location){
-//
-//  // REQUIRES IMPLEMENTATION
-//}
-//
-//
+/*
+ * METODOS SET
+ */
+
+void Address::setStreet(string street){
+    this->street = street;
+}
+
+void Address::setDoorNumber(unsigned short doorNumber){
+    this->doorNumber = doorNumber;
+}
+
+void Address::setFloor(string floor){
+    this->floor = floor;
+}
+
+void Address::setPostalCode(string postalCode){
+    this->postalCode = postalCode;
+}
+
+void Address::setLocation(string location){
+    this->location = location;
+}
+
+
 ///*********************************
 // * Mostrar Address
 // ********************************/
