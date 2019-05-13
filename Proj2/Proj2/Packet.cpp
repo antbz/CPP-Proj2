@@ -1,81 +1,84 @@
 #include "Packet.h"
 
-Packet::Packet(vector<string> sites, Date inicio, Date fim, double precoPessoa, unsigned maxPessoas){
-
-  // REQUIRES IMPLEMENTATION
+Packet::Packet(vector<string> sites, Date begin, Date end, double pricePerPerson, unsigned maxPersons) {
+	this->sites = sites;
+	this->begin = begin;
+	this->end = end;
+	this->pricePerPerson = pricePerPerson;
+	this->maxPersons = maxPersons;
 }
 
-  // metodos GET
+// metodos GET
 
-unsigned Packet::getId() const{
+unsigned Packet::getId() const {
 
-  // REQUIRES IMPLEMENTATION
+	// REQUIRES IMPLEMENTATION
 }
 
-vector<string> Packet::getSites() const{
+vector<string> Packet::getSites() const {
 
-  // REQUIRES IMPLEMENTATION
+	// REQUIRES IMPLEMENTATION
 }
 
-Date Packet::getBeginDate() const{
+Date Packet::getBeginDate() const {
 
-  // REQUIRES IMPLEMENTATION
+	// REQUIRES IMPLEMENTATION
 }
 
-Date Packet::getEndDate() const{
+Date Packet::getEndDate() const {
 
-  // REQUIRES IMPLEMENTATION
+	// REQUIRES IMPLEMENTATION
 }
 
-double Packet::getPricePerPerson() const{
+double Packet::getPricePerPerson() const {
 
-  // REQUIRES IMPLEMENTATION
+	// REQUIRES IMPLEMENTATION
 }
 
-unsigned Packet::getMaxPersons() const{
+unsigned Packet::getMaxPersons() const {
 
-  // REQUIRES IMPLEMENTATION
+	// REQUIRES IMPLEMENTATION
 }
 
-  // metodos SET
+// metodos SET
 
-void Packet::setId(unsigned id){
+void Packet::setId(unsigned id) {
 
-  // REQUIRES IMPLEMENTATION
+	// REQUIRES IMPLEMENTATION
 }
 
-void Packet::setSites(vector<string> sites){
+void Packet::setSites(vector<string> sites) {
 
-  // REQUIRES IMPLEMENTATION
+	// REQUIRES IMPLEMENTATION
 }
 
-void Packet::setBeginDate(Date begin){
+void Packet::setBeginDate(Date begin) {
 
-  // REQUIRES IMPLEMENTATION
+	// REQUIRES IMPLEMENTATION
 }
 
-void Packet::setEndDate(Date end){
+void Packet::setEndDate(Date end) {
 
-  // REQUIRES IMPLEMENTATION
+	// REQUIRES IMPLEMENTATION
 }
 
-void Packet::setPricePerPerson(double pricePerPerson){
+void Packet::setPricePerPerson(double pricePerPerson) {
 
-  // REQUIRES IMPLEMENTATION
+	// REQUIRES IMPLEMENTATION
 }
 
-void Packet::setMaxPersons(unsigned maxPersons){
+void Packet::setMaxPersons(unsigned maxPersons) {
 
-  // REQUIRES IMPLEMENTATION
+	// REQUIRES IMPLEMENTATION
 }
 
 
 /*********************************
  * Show Packet information
- ********************************/  
+ ********************************/
 
-// shows a packet content 
-ostream& operator<<(ostream& out, const Packet & packet){
+ // shows a packet content 
+ostream& operator<<(ostream& out, const Packet & packet) {
 
-  // REQUIRES IMPLEMENTATION
+	// REQUIRES IMPLEMENTATION
 }
