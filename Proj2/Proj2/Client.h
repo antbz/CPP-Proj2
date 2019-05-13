@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 
-
+#include "utilities.h"
 #include "defs.h"
 #include "Packet.h"
 #include "Address.h"
@@ -40,7 +40,7 @@ class Client{
   void setFamilySize(unsigned short familySize);
   void setAddress(Address address);
   void setPacketList(vector<Packet> & packets);
-  unsigned setTotalPurchased(unsigned totalPurchased);
+  void setTotalPurchased(unsigned totalPurchased);
   
   // other methods
 

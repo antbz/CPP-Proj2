@@ -1,0 +1,13 @@
+PROGRESS:
+
+-DONE-
+.Feitas classes da data, morada, clientes e pacotes
+
+
+-TODO-
+.Erros em tudo (a implementar quando se fizerem as
+funções que lidam com os inputs e leitura de ficheiros)
+
+.Implementar os menus
+
+

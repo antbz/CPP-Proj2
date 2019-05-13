@@ -82,3 +82,8 @@ vector<int> strToIntVect(const string &str, char delim) {
     }
     return result;
 }
+
+void line(int size, char ch) {
+    // Prints a line of specified size with specified character
+    cout << setfill(ch) << setw(size) << "" << endl << setfill(' ');
+}
