@@ -4,7 +4,7 @@
 
 using namespace std;
 
-int main() {
+int mainz() {
     string str = "Marisa Santa / 23 / 4ESQ/4900-879 / Viseu";
 
 
