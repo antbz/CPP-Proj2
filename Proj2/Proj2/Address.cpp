@@ -10,73 +10,70 @@ Address::Address(string street, unsigned short doorNumber, string floor, string 
     this->floor = floor;
     this->postalCode = postalCode;
     this->location = location;
-  // REQUIRES IMPLEMENTATION
 }
 
-  // metodos GET
+/*
+ * METODOS GET
+ */
 
 
 string Address::getStreet() const{
-
-  // REQUIRES IMPLEMENTATION
+    return street;
 }
 
 unsigned short Address::getDoorNumber() const{
-
-  // REQUIRES IMPLEMENTATION
+    return doorNumber;
 }
 
 string Address::getFloor() const{
-  
-  // REQUIRES IMPLEMENTATION
+    return floor;
 }
 
 string Address::getPostalCode() const{
-
-  // REQUIRES IMPLEMENTATION
+    return postalCode;
 }
 
 string Address::getLocation() const{
-
-  // REQUIRES IMPLEMENTATION
+    return location;
 }
 
-
-  // metodos SET
-
-void Address::setStreet(string street){
-
-  // REQUIRES IMPLEMENTATION
-}
-
-void Address::setDoorNumber(unsigned short doorNumber){
-
-  // REQUIRES IMPLEMENTATION
-}
-
-void Address::setFloor(string floor){
-
-  // REQUIRES IMPLEMENTATION
-}
-
-void Address::setPostalCode(string postalCode){
-
-  // REQUIRES IMPLEMENTATION
-}
-
-void Address::setLocation(string  location){
-
-  // REQUIRES IMPLEMENTATION
-}
-
-
-/*********************************
- * Mostrar Address
- ********************************/  
-
-// discplyes an address in a nice format
-ostream& operator<<(ostream& out, const Address & address){
-
-  // REQUIRES IMPLEMENTATION
-
-}
+//
+//  // metodos SET
+//
+//void Address::setStreet(string street){
+//
+//  // REQUIRES IMPLEMENTATION
+//}
+//
+//void Address::setDoorNumber(unsigned short doorNumber){
+//
+//  // REQUIRES IMPLEMENTATION
+//}
+//
+//void Address::setFloor(string floor){
+//
+//  // REQUIRES IMPLEMENTATION
+//}
+//
+//void Address::setPostalCode(string postalCode){
+//
+//  // REQUIRES IMPLEMENTATION
+//}
+//
+//void Address::setLocation(string  location){
+//
+//  // REQUIRES IMPLEMENTATION
+//}
+//
+//
+///*********************************
+// * Mostrar Address
+// ********************************/
+//
+//// discplyes an address in a nice format
+//ostream& operator<<(ostream& out, const Address & address){
+//
+//  // REQUIRES IMPLEMENTATION
+//
+//}
+//
