@@ -5,7 +5,7 @@
 
 using namespace std;
 
-int main() {
+int mainz() {
 	Packet packet1;
 	packet1.setId(3);
 	packet1.setSites(sitesStrToVect("Douro - a, tua, prima"));

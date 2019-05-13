@@ -12,8 +12,18 @@ Address::Address(string street, unsigned short doorNumber, string floor, string 
     this->location = location;
 }
 
+Address::Address(string fullAddress, char delim) {
+    vector<string> temp;
+    temp = strToVect(fullAddress, delim);
+    street = temp.at(0);
+    doorNumber = stoi(temp.at(1));
+    floor = temp.at(2);
+    postalCode = temp.at(3);
+    location = temp.at(4);
+}
+
 /*
- * METODOS GET
+ * GET methods
  */
 
 
@@ -37,43 +47,47 @@ string Address::getLocation() const{
     return location;
 }
 
-//
-//  // metodos SET
-//
-//void Address::setStreet(string street){
-//
-//  // REQUIRES IMPLEMENTATION
-//}
-//
-//void Address::setDoorNumber(unsigned short doorNumber){
-//
-//  // REQUIRES IMPLEMENTATION
-//}
-//
-//void Address::setFloor(string floor){
-//
-//  // REQUIRES IMPLEMENTATION
-//}
-//
-//void Address::setPostalCode(string postalCode){
-//
-//  // REQUIRES IMPLEMENTATION
-//}
-//
-//void Address::setLocation(string  location){
-//
-//  // REQUIRES IMPLEMENTATION
-//}
-//
-//
-///*********************************
-// * Mostrar Address
-// ********************************/
-//
-//// discplyes an address in a nice format
-//ostream& operator<<(ostream& out, const Address & address){
-//
-//  // REQUIRES IMPLEMENTATION
-//
-//}
-//
+/*
+ * SET methods
+ */
+
+void Address::setStreet(string street){
+    this->street = street;
+}
+
+void Address::setDoorNumber(unsigned short doorNumber){
+    this->doorNumber = doorNumber;
+}
+
+void Address::setFloor(string floor){
+    this->floor = floor;
+}
+
+void Address::setPostalCode(string postalCode){
+    this->postalCode = postalCode;
+}
+
+void Address::setLocation(string location){
+    this->location = location;
+}
+
+
+/*
+ * SHOW Address
+ */
+
+// Displays an address in a nice format
+ostream& operator<<(ostream& out, const Address & address){
+    out << address.street + ", " + to_string(address.doorNumber) + ", " + address.floor + ", " + address.postalCode + ", " + address.location;
+    return out;
+}
+
+bool validAddress(string &str, char delim) {
+    // Returns whether the address format is valid and
+    // extracts it to the dest vector
+    vector<string> temp;
+    temp = strToVect(str, delim);
+    if (temp.size() != 5 || !isNumeric(temp.at(1)))
+        return false;
+    return true;
+}
