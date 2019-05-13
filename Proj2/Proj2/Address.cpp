@@ -12,8 +12,18 @@ Address::Address(string street, unsigned short doorNumber, string floor, string 
     this->location = location;
 }
 
+Address::Address(string fullAddress, char delim) {
+    vector<string> temp;
+    temp = strToVect(fullAddress, delim);
+    street = temp.at(0);
+    doorNumber = stoi(temp.at(1));
+    floor = temp.at(2);
+    postalCode = temp.at(3);
+    location = temp.at(4);
+}
+
 /*
- * METODOS GET
+ * GET methods
  */
 
 
@@ -38,7 +48,7 @@ string Address::getLocation() const{
 }
 
 /*
- * METODOS SET
+ * SET methods
  */
 
 void Address::setStreet(string street){
@@ -62,14 +72,22 @@ void Address::setLocation(string location){
 }
 
 
-///*********************************
-// * Mostrar Address
-// ********************************/
-//
-//// discplyes an address in a nice format
-//ostream& operator<<(ostream& out, const Address & address){
-//
-//  // REQUIRES IMPLEMENTATION
-//
-//}
-//
+/*
+ * SHOW Address
+ */
+
+// Displays an address in a nice format
+ostream& operator<<(ostream& out, const Address & address){
+    out << address.street + ", " + to_string(address.doorNumber) + ", " + address.floor + ", " + address.postalCode + ", " + address.location;
+    return out;
+}
+
+bool validAddress(string &str, char delim) {
+    // Returns whether the address format is valid and
+    // extracts it to the dest vector
+    vector<string> temp;
+    temp = strToVect(str, delim);
+    if (temp.size() != 5 || !isNumeric(temp.at(1)))
+        return false;
+    return true;
+}

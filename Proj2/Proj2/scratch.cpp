@@ -5,14 +5,14 @@
 using namespace std;
 
 int main() {
-    Address addr1("Maria Feliciana", 12, "cegei", "cafadn", "difhd");
-    cout << addr1.getStreet() << endl;
-    cout << addr1.getDoorNumber() << endl;
-    addr1.setDoorNumber(520);
-    cout << addr1.getDoorNumber() << endl;
-    cout << addr1.getFloor() << endl;
-    cout << addr1.getPostalCode() << endl;
-    cout << addr1.getLocation() << endl;
+    string str = "Marisa Santa / 23 / 4ESQ/4900-879 / Viseu";
+
+
+        Address addr1;
+
+    cout << addr1;
+
+
 
     char c;
     cin >> c;
