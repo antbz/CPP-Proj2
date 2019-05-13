@@ -4,11 +4,10 @@
 
 using namespace std;
 
-int mainz() {
+int main() {
     string str = "Marisa Santa / 23 / 4ESQ/4900-879 / Viseu";
 
-
-        Address addr1;
+    Address addr1(str);
 
     cout << addr1;
 
