@@ -1,3 +1,5 @@
+#pragma once
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -30,6 +32,6 @@ public:
 
 	// outhet methods */
 
-	friend ostream& operator<<(ostream& out, const Date & date);
+	friend ostream& operator<<(ostream& out, const Date &date);
 
 };
