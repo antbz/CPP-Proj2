@@ -4,9 +4,10 @@ Date::Date() {
 }
 
 Date::Date(string date) {
-	this->day = stoi(date.substr(8, 2));
-	this->month = stoi(date.substr(5, 2));
-	this->year = stoi(date.substr(0, 4));
+	vector<string> vdata = strToVect(date, '/');
+	this->day = stoi(vdata.at(2));
+	this->month = stoi(vdata.at(1));
+	this->year = stoi(vdata.at(0));
 }
 
 
