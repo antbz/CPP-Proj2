@@ -4,8 +4,8 @@
 using namespace std;
 
 int main() {
-	string str = "ayy lmao";
-	cout << str << endl;
+	string str = "     aiy lmao";
+	cout << trim(str) << endl;
 	char c;
 	cin >> c;
 }

@@ -27,7 +27,7 @@ vector<string> strToVect(const string &str, char delim) {
     vector<string> result;
     string tmp;
     // Create stream from string
-    istringstream ss(str);
+	istringstream ss(str);
     // Grab the elements from the stream, separated by delim
     while (getline(ss, tmp, delim)) {
         result.push_back(trim(tmp));
