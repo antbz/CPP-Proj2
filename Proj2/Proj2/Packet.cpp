@@ -1,6 +1,11 @@
 #include "Packet.h"
 
-Packet::Packet(vector<string> sites, Date begin, Date end, double pricePerPerson, unsigned maxPersons) {
+Packet::Packet() {
+
+}
+
+Packet::Packet(unsigned id, vector<string> sites, Date begin, Date end, double pricePerPerson, unsigned maxPersons) {
+	this->id = id;
 	this->sites = sites;
 	this->begin = begin;
 	this->end = end;
@@ -11,65 +16,53 @@ Packet::Packet(vector<string> sites, Date begin, Date end, double pricePerPerson
 // metodos GET
 
 unsigned Packet::getId() const {
-
-	// REQUIRES IMPLEMENTATION
+	return id;
 }
 
 vector<string> Packet::getSites() const {
-
-	// REQUIRES IMPLEMENTATION
+	return sites;
 }
 
 Date Packet::getBeginDate() const {
-
-	// REQUIRES IMPLEMENTATION
+	return begin;
 }
 
 Date Packet::getEndDate() const {
-
-	// REQUIRES IMPLEMENTATION
+	return end;
 }
 
 double Packet::getPricePerPerson() const {
-
-	// REQUIRES IMPLEMENTATION
+	return pricePerPerson;
 }
 
 unsigned Packet::getMaxPersons() const {
-
-	// REQUIRES IMPLEMENTATION
+	return maxPersons;
 }
 
 // metodos SET
 
 void Packet::setId(unsigned id) {
-
-	// REQUIRES IMPLEMENTATION
+	this->id = id;
 }
 
 void Packet::setSites(vector<string> sites) {
-
-	// REQUIRES IMPLEMENTATION
+	this->sites = sites;
 }
 
 void Packet::setBeginDate(Date begin) {
-
-	// REQUIRES IMPLEMENTATION
+	this->begin = begin;
 }
 
 void Packet::setEndDate(Date end) {
-
-	// REQUIRES IMPLEMENTATION
+	this->end = end;
 }
 
 void Packet::setPricePerPerson(double pricePerPerson) {
-
-	// REQUIRES IMPLEMENTATION
+	this->pricePerPerson = pricePerPerson;
 }
 
 void Packet::setMaxPersons(unsigned maxPersons) {
-
-	// REQUIRES IMPLEMENTATION
+	this->maxPersons = maxPersons;
 }
 
 
@@ -79,6 +72,11 @@ void Packet::setMaxPersons(unsigned maxPersons) {
 
  // shows a packet content 
 ostream& operator<<(ostream& out, const Packet & packet) {
-
-	// REQUIRES IMPLEMENTATION
+	out << "Packet ID       : " << packet.id << endl;
+	out << "Destination(s)  : " << sitesVectToStr(packet.sites) << endl;
+	out << "Begins          : " << packet.begin << endl;
+	out << "Ends            : " << packet.end << endl;
+	out << "Price Per Person: " << packet.pricePerPerson << endl;
+	out << "Available Stock : " << packet.maxPersons;
+	return out;
 }

@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 
-
+#include "utilities.h"
 #include "defs.h"
 #include "Date.h"
 
@@ -20,7 +20,8 @@ private:
 	unsigned maxPersons; // number of persons still available in the packet (updated whenever the packet is sold to a new client)
 
 public:
-	Packet(vector<string> sites, Date begin, Date end, double pricePerPerson, unsigned maxPersons);
+	Packet();
+	Packet(unsigned id, vector<string> sites, Date begin, Date end, double pricePerPerson, unsigned maxPersons);
 
 	// GET methods
 	unsigned getId() const;

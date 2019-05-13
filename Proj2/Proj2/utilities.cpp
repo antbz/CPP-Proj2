@@ -21,6 +21,22 @@ string trim(string &str) {
     return str.substr(str_init, str_range);
 }
 
+string sitesVectToStr(vector<string> sites) {
+	string result = sites.at(0);
+	if (sites.size() > 1) {
+		result += " - ";
+		for (int i = 1; i < sites.size(); i++) {
+			if (i == sites.size() - 1) {
+				result += sites.at(i);
+			}
+			else {
+				result += sites.at(i) + ", ";
+			}
+		}
+		
+	}
+	return result;
+};
 
 vector<string> strToVect(const string &str, char delim) {
     // Splits a string into a vector of strings
@@ -35,6 +51,16 @@ vector<string> strToVect(const string &str, char delim) {
         ss >> ws;
     }
     return result;
+}
+
+vector<string> sitesStrToVect(string sites) {
+	vector<string> result = strToVect(sites, '-');
+	if (result.size() > 1) {
+		vector<string> subsites = strToVect(result.at(1), ',');
+		result.pop_back();
+		result.insert(result.end(), subsites.begin(), subsites.end());
+	}
+	return result;
 }
 
 vector<int> strToIntVect(const string &str, char delim) {
