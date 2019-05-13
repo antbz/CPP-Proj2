@@ -5,7 +5,11 @@ Address::Address(){
 }
 
 Address::Address(string street, unsigned short doorNumber, string floor, string postalCode, string location){
-
+    this->street = street;
+    this->doorNumber = doorNumber;
+    this->floor = floor;
+    this->postalCode = postalCode;
+    this->location = location;
   // REQUIRES IMPLEMENTATION
 }
 

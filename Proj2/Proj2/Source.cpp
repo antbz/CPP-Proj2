@@ -1,9 +1,11 @@
 #include <iostream>
+#include "utilities.h"
 
 using namespace std;
 
 int main() {
-	cout << "ayy lmao" << endl;
+	string str = "ayy lmao";
+	cout << str << endl;
 	char c;
 	cin >> c;
 }

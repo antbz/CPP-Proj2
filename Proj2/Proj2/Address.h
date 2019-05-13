@@ -12,7 +12,7 @@ using namespace std;
 class Address{
  private:
   string street; // street name
-  unsigned short doorNumber; // doro number
+  unsigned short doorNumber; // door number
   string floor; // floor number ("-" is not applicable)
   string postalCode; // postal code
   string location; // site
