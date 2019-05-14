@@ -89,5 +89,5 @@ ostream& operator<<(ostream& out, const Client &client){
     }
     out << setw(4) << left << '|' << "Total of purchased packs: " << client.totalPurchased << endl;
     out << "\\_" << endl;
-
+	return out;
 }
