@@ -1,0 +1,55 @@
+Rui Manuel
+234987156
+4
+Rua Sem Fim / 200 / 5Esq /1200-001 / Lisboa
+1; 3
+250
+::::::::::
+Belmiro Miguel
+111987666
+2
+Avenida dos Grilos / 100 / - /2300-101 / Coimbra
+2
+300
+::::::::::
+António Manuel
+759846351
+9
+Rua da Felicidade / 20 / - /4788-955 / Vilar
+2; 3
+350
+::::::::::
+Rui
+123456789
+2
+Meio / 2 / 3esq / 2200-989 / Ola
+2; 3
+350
+::::::::::
+Paula
+321456789
+2
+Maria / 2 / ceu / cabeleireiros / ya
+2
+300
+::::::::::
+Paulo
+987654321
+2
+Maria / 3 / ceu / cabeleireiros / ye
+2
+300
+::::::::::
+Joana
+111222333
+2
+Rua de Cima / 10 / - / 5780-998 / Lugar de Baixo
+1
+200
+::::::::::
+Francisco Lima
+215674836
+4
+Travessa do Mar / 8 / - / 4100-888 / Porto
+1
+200
