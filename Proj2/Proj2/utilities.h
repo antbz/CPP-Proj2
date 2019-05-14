@@ -28,3 +28,7 @@ vector<int> strToIntVect(const string &str, char delim = ' ');
 // Display functions
 
 void line(int size, char ch = '-');
+
+void cinERR(const string &message);
+
+void getOption(int &dest, const string &message = "Opção: ");
