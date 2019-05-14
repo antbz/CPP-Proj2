@@ -8,10 +8,8 @@
 
 using namespace std;
 
-int main() {
+int mainz() {
 	Agency agency("agency.txt");
 	mainMenu(agency);
-	char c;
-	cin >> c;
 	return 0;
 }

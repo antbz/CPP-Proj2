@@ -114,6 +114,13 @@ void getOption(int &dest, const string &message) {
 		}
 	}
 }
+
+bool validNIF(string const &nif) {
+	if (nif.length() != 9 || !isNumeric(nif))
+		return false;
+	return true;
+}
+
 /*
 bool buyPack(Agency agency, int c_pos, int p_pos) {
 	vector<Client> c_tmp = agency.getClients();

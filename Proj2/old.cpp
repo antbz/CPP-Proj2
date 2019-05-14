@@ -1522,7 +1522,7 @@ void agencyMenuSelect(Agency &agency, vector<Client> &clients, vector<Pack> &pac
                 break;
             default:
                 cinERR("ERRO: Opção inválida, tente outra vez");
-                agencyMenuSelect(agency, clients, packs);
+                agencyMenuSelect(agency, clients, packs); // TA MALL TA ERRRAADO devia ser valid = false
                 break;
         }
     } while (!valid);

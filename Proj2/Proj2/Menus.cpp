@@ -12,6 +12,8 @@ void mainMenu(Agency &agency){
 	cout << setw(4) << left << '|' << "5. Agency Management" << endl;
 	cout << endl << setw(4) << left << '|' << "0. CLOSE" << endl;
 	line(35);
+
+	mainMenuSelect(agency);
 }
 
 void mainMenuSelect(Agency &agency) {
@@ -23,58 +25,119 @@ void mainMenuSelect(Agency &agency) {
 		getOption(opt);
 		valid = true;
 		switch (opt) {
-		case 1:
-			int client_pos, packet_pos;
-			while (true) {
-				cout << "Client NIF (0 - cancel): ";
-				getline(cin, str);
-				if (str == "0") {
-					break;
-				}
-				else if (isNumeric(str) && str.length() == 9) {
-					client_pos = findClient(agency.getClients(), stoi(str));
-					if (client_pos == -1) {
-						str = "0";
-						cinERR("Client does not exist!");
-					}
-					break;
-				}
-				cinERR("ERROR: Invalid NIF, try again!");
-			}
-			if (str == "0") {
-				cout << endl << "ENTER to go to the MAIN MENU";
-				getline(cin, str);
-				mainMenu(agency);
-				break;
-			}
-			while (true) {
-				cout << "Packet ID (0 - cancel): ";
-				getline(cin, str);
-				if (str == "0") {
-					break;
-				}
-				else if (isNumeric(str)) {
-					packet_pos = findPacket(stoi(str), agency.getPackets());
-					if (packet_pos == -1) {
-						str = "0";
-						cinERR("Packet does not exist!");
-					}
-					break;
-				}
-			}
-			if (str == "0") {
-				cout << endl << "ENTER to go to the MAIN MENU";
-				getline(cin, str);
-				mainMenu(agency);
-				break;
-			}
-			/*if (buyPack(agency, client_pos, packet_pos)) {
-				cout << "Successfull purchase!";
-			}*/
-			cout << endl << "ENTER to go to the MAIN MENU";
-			getline(cin, str);
-			mainMenu(agency);
-			break;
+		    case 0: // Close
+                cout << "Save changes (Y/n): ";
+                getline(cin, str);
+                if (str == "N" || str == "n") {
+                    cout << "Closed without saving" << endl;
+                } else {
+                    agency.saveAgency();
+                    cout << "Changes saved!" << endl;
+                }
+                break;
+            case 1: // Make purchase
+                int client_pos, packet_pos;
+                while (true) {
+                    cout << "Client NIF (0 - cancel): ";
+                    getline(cin, str);
+                    if (str == "0") {
+                        break;
+                    }
+                    else if (isNumeric(str) && str.length() == 9) {
+                        client_pos = findClient(agency.getClients(), stoi(str));
+                        if (client_pos == -1) {
+                            str = "0";
+                            cinERR("Client does not exist!");
+                        }
+                        break;
+                    }
+                    cinERR("ERROR: Invalid NIF, try again!");
+                }
+                if (str == "0") {
+                    cout << endl << "ENTER to go to the MAIN MENU";
+                    getline(cin, str);
+                    mainMenu(agency);
+                    break;
+                }
+                while (true) {
+                    cout << "Packet ID (0 - cancel): ";
+                    getline(cin, str);
+                    if (str == "0") {
+                        break;
+                    }
+                    else if (isNumeric(str)) {
+                        packet_pos = findPacket(stoi(str), agency.getPackets());
+                        if (packet_pos == -1) {
+                            str = "0";
+                            cinERR("Packet does not exist!");
+                        }
+                        break;
+                    }
+                }
+                if (str == "0") {
+                    cout << endl << "ENTER to go to the MAIN MENU";
+                    getline(cin, str);
+                    mainMenu(agency);
+                    break;
+                }
+                /*if (buyPack(agency, client_pos, packet_pos)) {
+                    cout << "Successfull purchase!";
+                }*/
+                cout << endl << "ENTER to go to the MAIN MENU";
+                getline(cin, str);
+                mainMenu(agency);
+                break;
+		    case 5:
+		        agencyMenu(agency);
+                break;
+            default:
+                valid = false;
+                cinERR("ERROR: Option does not exist, try again");
+                break;
 		}
 	} while (!valid);
+}
+
+void agencyMenu(Agency &agency) {
+    line(35);
+    cout << right << setfill(' ') << setw(22) << "AGENCY" << endl;
+    line(35);
+    cout << setw(4) << left << '|' << "1. Display info" << endl;
+    cout << setw(4) << left << '|' << "2. Edit info" << endl;
+    cout << endl << setw(4) << left << '|' << "0. GO BACK" << endl;
+    line(35);
+
+    agencyMenuSelect(agency);
+}
+
+void agencyMenuSelect(Agency &agency) {
+    string str;
+    int opt;
+    bool valid;
+
+    do {
+        getOption(opt);
+        valid =  true;
+        switch (opt) {
+            case 0:
+                mainMenu(agency);
+                break;
+            case 1:
+                cout << agency;
+                cout << endl << "ENTER para voltar atrás";
+                getline(cin, str);
+                agencyMenu(agency);
+                break;
+            case 2:
+                editAgency(agency);
+                cout << endl << "ENTER para voltar atrás";
+                getline(cin, str);
+                agencyMenu(agency);
+                break;
+            default:
+                valid = false;
+                cinERR("ERROR: Option does not exist, try again");
+                break;
+        }
+    } while (!valid);
 }

@@ -96,7 +96,6 @@ Agency::Agency(string fileName) {
 }
 
 void Agency::saveAgency() {
-    cout << endl << "Massive destroyy";
     if (agencyInfoHasChanged) {
         ofstream agency_file(fileName);
         agency_file << name << endl;
@@ -190,6 +189,14 @@ vector<Packet> Agency::getPackets() const{
     return packets;
 }
 
+string Agency::getClientsFileName() const{
+    return clientsFileName;
+}
+
+string Agency::getPacketsFileName() const {
+    return packetsFileName;
+}
+
 
   // SET Methods
 
@@ -223,6 +230,16 @@ void Agency::setPackets(vector<Packet> &packets){
     this->packets = packets;
 }
 
+void Agency::setClientsFileName(string clientsFileName) {
+    agencyInfoHasChanged = true;
+    this->clientsFileName = clientsFileName;
+}
+
+void Agency::setPacketsFileName(string packetsFileName) {
+    agencyInfoHasChanged = true;
+    this->packetsFileName = packetsFileName;
+}
+
 
 // mostra o conteudo de uma agencia
 ostream& operator<<(ostream& out, const Agency &agency){
@@ -235,4 +252,83 @@ ostream& operator<<(ostream& out, const Agency &agency){
     out << setw(4) << left << '|' << "Packets file: " << agency.packetsFileName << endl;
     out << "\\_" << endl;
     return out;
+}
+
+bool editAgency(Agency &agency) {
+    string name, VATnumber, URL, address_str, clientsFileName, packetsFileName;
+    Address address;
+
+    cout << setw(2) << ' ' << "EDITING AGENCY (0 - cancel)" << endl;
+    cout << "/" << endl;
+
+    cout << setw(4) << left << '|' << "Name (" << agency.getName() << "): ";
+    getline(cin, name);
+    if (name.empty()) {
+        name = agency.getName();
+    } else if (name == "0") {
+        return false;
+    }
+
+    do {
+        cout << setw(4) << left << '|' << "NIF (" << agency.getVATnumber() << "): ";
+        getline(cin, VATnumber);
+        if (VATnumber.empty()) {
+            VATnumber = to_string(agency.getVATnumber());
+            break;
+        } else if (VATnumber == "0") {
+            return false;
+        } else if (validNIF(VATnumber)) {
+            break;
+        }
+        cinERR("ERROR: Invalid NIF, try again!");
+    } while (!validNIF(VATnumber));
+
+    cout << setw(4) << left << '|' << "Website (" << agency.getURL() << "): ";
+    getline(cin, URL);
+    if (URL.empty()) {
+        URL = agency.getURL();
+    } else if (URL == "0") {
+        return false;
+    }
+
+    do {
+        cout << setw(4) << left << '|' << "Address (" << agency.getAddress() << "): ";
+        getline(cin, address_str);
+        if (address_str.empty()) {
+            address = agency.getAddress();
+            break;
+        } else if (address_str == "0") {
+            return false;
+        } else {
+            if (validAddress(address_str, ',')) {
+                address = Address(address_str, ',');
+                break;
+            }
+        }
+        cinERR("ERROR: Invalid address, separate items with ,");
+    } while(!validAddress(address_str, ','));
+
+    cout << setw(4) << left << '|' << "Clients file (" << agency.getClientsFileName() << "): ";
+    getline(cin, clientsFileName);
+    if (clientsFileName.empty()) {
+        clientsFileName = agency.getClientsFileName();
+    } else if (clientsFileName == "0") {
+        return false;
+    }
+
+    cout << setw(4) << left << '|' << "Packets (" << agency.getPacketsFileName() << "): ";
+    getline(cin, packetsFileName);
+    if (packetsFileName.empty()) {
+        packetsFileName = agency.getPacketsFileName();
+    } else if (packetsFileName == "0") {
+        return false;
+    }
+
+    agency.setName(name);
+    agency.setVATnumber(stoi(VATnumber));
+    agency.setURL(URL);
+    agency.setAddress(address);
+    agency.setClientsFileName(clientsFileName);
+    agency.setPacketsFileName(packetsFileName);
+    return true;
 }

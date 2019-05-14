@@ -33,4 +33,6 @@ void cinERR(const string &message);
 
 void getOption(int &dest, const string &message = "Option: ");
 
+bool validNIF(string const &nif);
+
 //bool buyPack(Agency agency, int c_pos, int p_pos);

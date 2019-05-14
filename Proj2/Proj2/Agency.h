@@ -44,6 +44,8 @@ class Agency{
   string getURL() const;
   vector<Client> getClients() const;
   vector<Packet> getPackets() const;
+  string getClientsFileName() const;
+  string getPacketsFileName() const;
 
   
   // methods SET
@@ -53,9 +55,13 @@ class Agency{
   void setURL(string url);
   void setClients(vector<Client> & clients);
   void setPackets(vector<Packet> & packets);
+  void setClientsFileName(string clientsFileName);
+  void setPacketsFileName(string packetsFileName);
 
   // other methods */
   
   friend ostream& operator<<(ostream& out, const Agency & agency);
 
 };
+
+bool editAgency(Agency &agency);
