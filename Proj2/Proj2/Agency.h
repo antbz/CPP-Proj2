@@ -35,7 +35,7 @@ class Agency{
 
  public:
   Agency(string fileName);
-  ~Agency();
+  void saveAgency();
 
   // methods GET
   string getName() const;

@@ -95,7 +95,8 @@ Agency::Agency(string fileName) {
   
 }
 
-Agency::~Agency() {
+void Agency::saveAgency() {
+    cout << endl << "Massive destroyy";
     if (agencyInfoHasChanged) {
         ofstream agency_file(fileName);
         agency_file << name << endl;
@@ -109,7 +110,7 @@ Agency::~Agency() {
 
     if (packetsInfoHasChanged) {
         ofstream packets_file(packetsFileName);
-        packets_file << lastID;
+        packets_file << lastID << endl;
 
         for (int i = 0; i < packets.size(); i++) {
             packets_file << packets.at(i).getId() << endl;
@@ -117,7 +118,7 @@ Agency::~Agency() {
             for (int j = 0; j < packets.at(i).getSites().size(); j++) {
                 if (j == 0)
                     packets_file << packets.at(i).getSites().at(j);
-                if (j == 1)
+                else if (j == 1)
                     packets_file << " - " << packets.at(i).getSites().at(j);
                 else
                     packets_file << ", " << packets.at(i).getSites().at(j);
@@ -148,9 +149,9 @@ Agency::~Agency() {
 
             for (int j = 0; j < clients.at(i).getPacketList().size(); j++) {
                 if (j == 0)
-                    clients_file << clients.at(i).getPacketList().at(j);
+                    clients_file << clients.at(i).getPacketList().at(j).getId();
                 else
-                    clients_file << "; " << clients.at(i).getPacketList().at(j);
+                    clients_file << "; " << clients.at(i).getPacketList().at(j).getId();
             }
 
             clients_file << endl << clients.at(i).getTotalPurchased();
