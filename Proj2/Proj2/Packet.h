@@ -17,8 +17,8 @@ private:
 	Date begin;  // begin date
 	Date end;  // end date
 	double pricePerPerson; // price per person
+	unsigned totalPersons;
 	unsigned maxPersons; // number of persons still available in the packet (updated whenever the packet is sold to a new client)
-
 public:
 	Packet();
 	Packet(unsigned id, vector<string> sites, Date begin, Date end, double pricePerPerson, unsigned maxPersons);
@@ -29,6 +29,7 @@ public:
 	Date getBeginDate() const;
 	Date getEndDate() const;
 	double getPricePerPerson() const;
+	unsigned getTotalPersons() const;
 	unsigned getMaxPersons() const;
 
 	// SET methods
@@ -37,9 +38,12 @@ public:
 	void setBeginDate(Date begin);
 	void setEndDate(Date end);
 	void setPricePerPerson(double pricePerPerson);
+	void setTotalPersons(unsigned maxPersons);
 	void setMaxPersons(unsigned maxPersons);
 
 	// other methods
 
 	friend ostream& operator<<(ostream& out, const Packet & packet);
 };
+
+vector<Packet> findPackets(const vector<int> &IDs, const vector<Packet> &packets);

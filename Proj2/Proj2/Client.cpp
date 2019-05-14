@@ -1,10 +1,15 @@
 #include "Client.h"
 
+Client::Client() {
+
+}
+
 Client::Client(string name, unsigned VATnumber, unsigned short familySize, Address address){
     this->name = name;
     this->VATnumber = VATnumber;
     this->familySize = familySize;
     this->address = address;
+    this->totalPurchased = 0;
 }
 
 Client::Client(string name, unsigned VATnumber, unsigned short familySize, Address address, vector<Packet> &packets, unsigned totalPurchased){
@@ -46,7 +51,7 @@ unsigned Client::getTotalPurchased() const{
 
   // metodos SET
 
-void Client::setName(string nome){
+void Client::setName(string name){
     this->name = name;
 }
 
@@ -60,7 +65,7 @@ void Client::setFamilySize(unsigned short familySize){
 void Client::setAddress(Address address){
     this->address = address;
 }
-void Client::setPacketList(vector<Packet> & packets){
+void Client::setPacketList(vector<Packet> &packets){
     this->packets = packets;
 }
 void Client::setTotalPurchased(unsigned totalPurchased){
@@ -82,6 +87,7 @@ ostream& operator<<(ostream& out, const Client &client){
         else
             out << client.packets.at(i).getId() << ", ";
     }
+    out << setw(4) << left << '|' << "Total of purchased packs: " << client.totalPurchased << endl;
     out << "\\_" << endl;
 
 }

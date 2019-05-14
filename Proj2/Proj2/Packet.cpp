@@ -35,6 +35,10 @@ double Packet::getPricePerPerson() const {
 	return pricePerPerson;
 }
 
+unsigned Packet::getTotalPersons() const {
+	return totalPersons;
+}
+
 unsigned Packet::getMaxPersons() const {
 	return maxPersons;
 }
@@ -61,9 +65,14 @@ void Packet::setPricePerPerson(double pricePerPerson) {
 	this->pricePerPerson = pricePerPerson;
 }
 
+void Packet::setTotalPersons(unsigned totalPersons){
+	this->totalPersons = totalPersons;
+}
+
 void Packet::setMaxPersons(unsigned maxPersons) {
 	this->maxPersons = maxPersons;
 }
+
 
 
 /*********************************
@@ -79,4 +88,18 @@ ostream& operator<<(ostream& out, const Packet & packet) {
 	out << "Price Per Person: " << packet.pricePerPerson << endl;
 	out << "Available Stock : " << packet.maxPersons;
 	return out;
+}
+
+
+// OUTROS
+
+vector<Packet> findPackets(const vector<int> &IDs, const vector<Packet> &packets) {
+    vector<Packet> result;
+	for (int i = 0; i < IDs.size(); i++) {
+    	for (int j = 0; j < packets.size(); j++) {
+			if (packets.at(j).getId() == IDs.at(i) || packets.at(j).getId() == -IDs.at(i))
+				result.push_back(packets.at(j));
+    	}
+    }
+    return result;
 }
