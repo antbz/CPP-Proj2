@@ -20,7 +20,7 @@ private:
 	unsigned maxPersons; // number of persons still available in the packet (updated whenever the packet is sold to a new client)
 public:
 	Packet();
-	Packet(unsigned id, vector<string> sites, Date begin, Date end, double pricePerPerson, unsigned maxPersons);
+	Packet(unsigned id, vector<string> sites, Date begin, Date end, double pricePerPerson, unsigned totalPersons, unsigned soldPersons, unsigned maxPersons);
 
 	// GET methods
 	unsigned getId() const;
@@ -50,3 +50,4 @@ public:
 vector<Packet> findPackets(const vector<int> &IDs, const vector<Packet> &packets);
 
 int findPacket(const int &ID, const vector<Packet> &packets);
+

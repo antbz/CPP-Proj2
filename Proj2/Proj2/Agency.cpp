@@ -197,6 +197,9 @@ string Agency::getPacketsFileName() const {
     return packetsFileName;
 }
 
+unsigned Agency::getLastID() const {
+    return lastID;
+}
 
   // SET Methods
 
@@ -238,6 +241,11 @@ void Agency::setClientsFileName(string clientsFileName) {
 void Agency::setPacketsFileName(string packetsFileName) {
     agencyInfoHasChanged = true;
     this->packetsFileName = packetsFileName;
+}
+
+void Agency::setLastID(unsigned lastID) {
+    packetsInfoHasChanged = true;
+    this->lastID = lastID;
 }
 
 
@@ -331,4 +339,103 @@ bool editAgency(Agency &agency) {
     agency.setClientsFileName(clientsFileName);
     agency.setPacketsFileName(packetsFileName);
     return true;
+}
+
+bool newPacket(Agency &agency) {
+    vector<Packet> temp_packets = agency.getPackets();
+//    Packet new_packet;
+    string sites_str, beginDate_str, endDate_str, str;
+    vector<string> sites;
+    Date beginDate, endDate;
+    double pricePerPerson;
+    unsigned id, totalPersons, soldPersons, maxPersons;
+
+    id = agency.getLastID() + 1;
+    cout << "NEW PACK ID: " << id << " (* - cancel)" << endl;
+
+    bool pass = true;
+    do {
+        cout << "Sites (main_site - subsite, subsite, ...): ";
+        getline(cin, sites_str);
+        if (sites_str.empty()) {
+            pass = false;
+            cinERR("ERROR: Invalid entry, try again");
+            continue;
+        } else if (sites_str == "*") {
+            return false;
+        } else {
+            sites = sitesStrToVect(sites_str);
+            break;
+        }
+    } while (!pass);
+
+    do {
+        cout << "Begin date: ";
+        getline(cin, beginDate_str);
+        if (validDate(beginDate_str)) {
+            beginDate = Date(beginDate_str);
+            break;
+        } else if (beginDate_str == "*") {
+            return false;
+        }
+        cinERR("ERROR: Invalid date, use format YYYY/MM/DD");
+    } while (!validDate(beginDate_str));
+
+    do {
+        cout << "End date: ";
+        getline(cin, endDate_str);
+        if (validDate(endDate_str)) {
+            endDate = Date(endDate_str);
+            break;
+        } else if (endDate_str == "*") {
+            return false;
+        }
+        cinERR("ERROR: Invalid date, use format YYYY/MM/DD");
+    } while (!validDate(endDate_str));
+
+
+    while (true) {
+        try {
+            cout << "Price per person: ";
+            getline(cin, str);
+            if (str == "*")
+                return false;
+            pricePerPerson = stod(str);
+            break;
+        } catch (invalid_argument) {
+            cinERR("ERROR: Invalid price, try again");
+        }
+    }
+
+    while (true) {
+        try {
+            cout << "Total seats: ";
+            getline(cin, str);
+            if (str == "*")
+                return false;
+            totalPersons = stoul(str);
+            break;
+        } catch (invalid_argument) {
+            cinERR("ERROR: Invalid entry, try again");
+        }
+    }
+
+    while (true) {
+        try {
+            cout << "Sold seats: ";
+            getline(cin, str);
+            if (str == "*")
+                return false;
+            soldPersons = stoul(str);
+            break;
+        } catch (invalid_argument) {
+            cinERR("ERROR: Invalid entry, try again");
+        }
+    }
+
+    maxPersons = totalPersons - soldPersons;
+
+    agency.setLastID(id);
+    temp_packets.emplace_back(id, sites, beginDate, endDate, pricePerPerson, totalPersons, soldPersons, maxPersons);
+    agency.setPackets(temp_packets);
 }

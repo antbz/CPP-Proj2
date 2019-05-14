@@ -62,8 +62,14 @@ ostream& operator<<(ostream &out, const Date &date) {
 }
 
 bool validDate(string date) {
+	if (date.empty())
+		return false;
+
 	vector<string> vsdate = strToVect(date, '/');
-	
+
+	if (vsdate.size() != 3)
+		return false;
+
 	vector<int> vdate(3);
 
 	for (int i = 0; i < 3; i++) {

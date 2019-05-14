@@ -4,12 +4,14 @@ Packet::Packet() {
 
 }
 
-Packet::Packet(unsigned id, vector<string> sites, Date begin, Date end, double pricePerPerson, unsigned maxPersons) {
+Packet::Packet(unsigned id, vector<string> sites, Date begin, Date end, double pricePerPerson, unsigned totalPersons, unsigned soldPersons, unsigned maxPersons) {
 	this->id = id;
 	this->sites = sites;
 	this->begin = begin;
 	this->end = end;
 	this->pricePerPerson = pricePerPerson;
+	this->totalPersons = totalPersons;
+	this->soldPersons = soldPersons;
 	this->maxPersons = maxPersons;
 }
 

@@ -46,6 +46,7 @@ class Agency{
   vector<Packet> getPackets() const;
   string getClientsFileName() const;
   string getPacketsFileName() const;
+  unsigned getLastID() const;
 
   
   // methods SET
@@ -57,6 +58,7 @@ class Agency{
   void setPackets(vector<Packet> & packets);
   void setClientsFileName(string clientsFileName);
   void setPacketsFileName(string packetsFileName);
+  void setLastID(unsigned lastID);
 
   // other methods */
   
@@ -65,3 +67,5 @@ class Agency{
 };
 
 bool editAgency(Agency &agency);
+
+bool newPacket(Agency &agency);
