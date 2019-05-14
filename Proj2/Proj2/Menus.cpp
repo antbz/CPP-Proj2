@@ -1,7 +1,7 @@
 #include "Menus.h"
 
 
-void mainMenu(Agency agency){
+void mainMenu(Agency &agency){
 	line(35);
 	cout << right << setfill(' ') << setw(22) << "MAIN MENU" << endl;
 	line(35);
@@ -14,7 +14,7 @@ void mainMenu(Agency agency){
 	line(35);
 }
 
-void mainMenuSelect(Agency agency) {
+void mainMenuSelect(Agency &agency) {
 	string str;
 	int opt;
 	bool valid;

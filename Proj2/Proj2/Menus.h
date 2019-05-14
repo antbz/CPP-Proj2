@@ -15,6 +15,6 @@
 using namespace std;
 
 
-void mainMenuSelect(Agency agency);
+void mainMenuSelect(Agency &agency);
 
-void mainMenu(Agency agency);
+void mainMenu(Agency &agency);
