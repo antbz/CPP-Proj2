@@ -6,7 +6,7 @@
 
 using namespace std;
 
-int main() {
+int mainz() {
 	string date = "1/2/1";
 	cout << validDate(date) << endl;
 	Date date1(date);
