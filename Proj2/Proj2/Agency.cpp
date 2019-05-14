@@ -145,12 +145,13 @@ void Agency::setAddress(Address address){
 
 // mostra o conteudo de uma agencia
 ostream& operator<<(ostream& out, const Agency &agency){
-    cout << setw(2) << ' ' << agency.name << endl;
-    cout << "/" << endl;
-    cout << setw(4) << left << '|' << "NIF: " << agency.VATnumber << endl;
-    cout << setw(4) << left << '|' << "Website: " << agency.URL << endl;
-    cout << setw(4) << left << '|' << "Address: " << agency.address << endl;
-    cout << setw(4) << left << '|' << "Clients file: " << agency.clientsFileName << endl;
-    cout << setw(4) << left << '|' << "Packets file: " << agency.packetsFileName << endl;
-    cout << "\\_" << endl;
+    out << setw(2) << ' ' << agency.name << endl;
+    out << "/" << endl;
+    out << setw(4) << left << '|' << "NIF: " << agency.VATnumber << endl;
+    out << setw(4) << left << '|' << "Website: " << agency.URL << endl;
+    out << setw(4) << left << '|' << "Address: " << agency.address << endl;
+    out << setw(4) << left << '|' << "Clients file: " << agency.clientsFileName << endl;
+    out << setw(4) << left << '|' << "Packets file: " << agency.packetsFileName << endl;
+    out << "\\_" << endl;
+	return out;
 }
