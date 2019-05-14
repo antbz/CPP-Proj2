@@ -39,6 +39,10 @@ unsigned Packet::getTotalPersons() const {
 	return totalPersons;
 }
 
+unsigned Packet::getSoldPersons() const {
+	return soldPersons;
+}
+
 unsigned Packet::getMaxPersons() const {
 	return maxPersons;
 }
@@ -67,6 +71,10 @@ void Packet::setPricePerPerson(double pricePerPerson) {
 
 void Packet::setTotalPersons(unsigned totalPersons){
 	this->totalPersons = totalPersons;
+}
+
+void Packet::setSoldPersons(unsigned soldPersons){
+	this->soldPersons = soldPersons;
 }
 
 void Packet::setMaxPersons(unsigned maxPersons) {

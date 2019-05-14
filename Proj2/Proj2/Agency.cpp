@@ -3,6 +3,11 @@
 unsigned Agency::lastID;
 
 Agency::Agency(string fileName) {
+    clientsInfoHasChanged = false;
+    packetsInfoHasChanged = false;
+    agencyInfoHasChanged = false;
+    this->fileName = fileName;
+
     string str;
     ifstream agency_file(fileName);
     
@@ -52,7 +57,8 @@ Agency::Agency(string fileName) {
         getline(packets_file, str);
         packets.back().setTotalPersons(stoi(str));
         getline(packets_file, str);
-        packets.back().setMaxPersons(stoi(str));
+        packets.back().setSoldPersons(stoi(str));
+        packets.back().setMaxPersons(packets.back().getTotalPersons() - packets.back().getSoldPersons());
 
         // Discard delimiter
         getline(packets_file, str);
@@ -89,6 +95,74 @@ Agency::Agency(string fileName) {
   
 }
 
+Agency::~Agency() {
+    if (agencyInfoHasChanged) {
+        ofstream agency_file(fileName);
+        agency_file << name << endl;
+        agency_file << VATnumber << endl;
+        agency_file << URL << endl;
+        agency_file << address << endl;
+        agency_file << clientsFileName << endl;
+        agency_file << packetsFileName;
+        agency_file.close();
+    }
+
+    if (packetsInfoHasChanged) {
+        ofstream packets_file(packetsFileName);
+        packets_file << lastID;
+
+        for (int i = 0; i < packets.size(); i++) {
+            packets_file << packets.at(i).getId() << endl;
+
+            for (int j = 0; j < packets.at(i).getSites().size(); j++) {
+                if (j == 0)
+                    packets_file << packets.at(i).getSites().at(j);
+                if (j == 1)
+                    packets_file << " - " << packets.at(i).getSites().at(j);
+                else
+                    packets_file << ", " << packets.at(i).getSites().at(j);
+            }
+
+            packets_file << endl << packets.at(i).getBeginDate() << endl;
+            packets_file << packets.at(i).getEndDate() << endl;
+
+            packets_file << packets.at(i).getPricePerPerson() << endl;
+            packets_file << packets.at(i).getTotalPersons() << endl;
+            packets_file << packets.at(i).getSoldPersons();
+
+            if (i != packets.size() - 1)
+                packets_file << endl << "::::::::::" << endl;
+        }
+
+        packets_file.close();
+    }
+
+    if (clientsInfoHasChanged) {
+        ofstream clients_file(clientsFileName);
+
+        for (int i = 0; i < clients.size(); i++) {
+            clients_file << clients.at(i).getName() << endl;
+            clients_file << clients.at(i).getVATnumber() << endl;
+            clients_file << clients.at(i).getFamilySize() << endl;
+            clients_file << clients.at(i).getAddress() << endl;
+
+            for (int j = 0; j < clients.at(i).getPacketList().size(); j++) {
+                if (j == 0)
+                    clients_file << clients.at(i).getPacketList().at(j);
+                else
+                    clients_file << "; " << clients.at(i).getPacketList().at(j);
+            }
+
+            clients_file << endl << clients.at(i).getTotalPurchased();
+
+            if (i != clients.size() - 1)
+                clients_file << endl << "::::::::::" << endl;
+        }
+
+        clients_file.close();
+    }
+}
+
   // GET METHODS
 
 string Agency::getName() const{
@@ -119,38 +193,45 @@ vector<Packet> Agency::getPackets() const{
   // SET Methods
 
 void Agency::setName(string name){
+    agencyInfoHasChanged = true;
     this->name = name;
 }
 
 void Agency::setVATnumber(unsigned VATnumber){
+    agencyInfoHasChanged = true;
     this->VATnumber = VATnumber;
 }
 
 void Agency::setAddress(Address address){
+    agencyInfoHasChanged = true;
     this->address = address;
 }
-  void Agency::setURL(string url){
+
+void Agency::setURL(string url){
+    agencyInfoHasChanged = true;
     this->URL = url;
-
 }
-  void Agency::setClients(vector<Client> &clients){
+
+void Agency::setClients(vector<Client> &clients){
+    clientsInfoHasChanged = true;
     this->clients = clients;
+}
 
-  }
-  void Agency::setPackets(vector<Packet> &packets){
+void Agency::setPackets(vector<Packet> &packets){
+    packetsInfoHasChanged = true;
     this->packets = packets;
-
 }
 
 
 // mostra o conteudo de uma agencia
 ostream& operator<<(ostream& out, const Agency &agency){
-    cout << setw(2) << ' ' << agency.name << endl;
-    cout << "/" << endl;
-    cout << setw(4) << left << '|' << "NIF: " << agency.VATnumber << endl;
-    cout << setw(4) << left << '|' << "Website: " << agency.URL << endl;
-    cout << setw(4) << left << '|' << "Address: " << agency.address << endl;
-    cout << setw(4) << left << '|' << "Clients file: " << agency.clientsFileName << endl;
-    cout << setw(4) << left << '|' << "Packets file: " << agency.packetsFileName << endl;
-    cout << "\\_" << endl;
+    out << setw(2) << ' ' << agency.name << endl;
+    out << "/" << endl;
+    out << setw(4) << left << '|' << "NIF: " << agency.VATnumber << endl;
+    out << setw(4) << left << '|' << "Website: " << agency.URL << endl;
+    out << setw(4) << left << '|' << "Address: " << agency.address << endl;
+    out << setw(4) << left << '|' << "Clients file: " << agency.clientsFileName << endl;
+    out << setw(4) << left << '|' << "Packets file: " << agency.packetsFileName << endl;
+    out << "\\_" << endl;
+    return out;
 }

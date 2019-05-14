@@ -26,12 +26,15 @@ class Agency{
   
   bool clientsInfoHasChanged; // flag that is set to "true" if at least one client has been changed/added/deleted
   bool packetsInfoHasChanged; // flag that is set to "true" if at least one packet has been changed/added/deleted
-  unsigned int maxClientsId; // maximum value among all clients identifiers
-  unsigned int maxPacketsId; // maximum value among all packets identifiers
+  bool agencyInfoHasChanged; // flag that is set to "true" if at least one agency parameter has been changed/added/deleted
+//  unsigned int maxClientsId; // maximum value among all clients identifiers
+//  unsigned int maxPacketsId; // maximum value among all packets identifiers
   static unsigned lastID;
+  string fileName;
 
  public:
   Agency(string fileName);
+  ~Agency();
 
   // methods GET
   string getName() const;

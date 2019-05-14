@@ -18,6 +18,7 @@ private:
 	Date end;  // end date
 	double pricePerPerson; // price per person
 	unsigned totalPersons;
+	unsigned soldPersons;
 	unsigned maxPersons; // number of persons still available in the packet (updated whenever the packet is sold to a new client)
 public:
 	Packet();
@@ -30,6 +31,7 @@ public:
 	Date getEndDate() const;
 	double getPricePerPerson() const;
 	unsigned getTotalPersons() const;
+	unsigned getSoldPersons() const;
 	unsigned getMaxPersons() const;
 
 	// SET methods
@@ -39,6 +41,7 @@ public:
 	void setEndDate(Date end);
 	void setPricePerPerson(double pricePerPerson);
 	void setTotalPersons(unsigned maxPersons);
+	void setSoldPersons(unsigned soldPersons);
 	void setMaxPersons(unsigned maxPersons);
 
 	// other methods

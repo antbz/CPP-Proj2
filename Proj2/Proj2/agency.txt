@@ -1,6 +1,0 @@
-NiceHolidays
-133331145
-http://www.niceholidays.pt
-Rua com Nome / 58 / - / 4400-987 / Porto
-clients.txt
-packs.txt
