@@ -7,10 +7,10 @@
 
 
 #include "utilities.h"
-#include "defs.h"
 #include "Address.h"
-#include "Client.h"
 #include "Packet.h"
+#include "Client.h"
+#include "Date.h"
 
 using namespace std;
 
@@ -20,7 +20,8 @@ class Agency{
   unsigned int VATnumber; // VAT number of the agency
   string URL; // URL of the agency Web site
   Address address; // address of the agency
-  string clientsFileName, packetsFileName;
+  string clientsFileName;
+  string packetsFileName;
   vector<Client> clients; // vector to store the existing clients
   vector<Packet> packets; // vector to store the existing packets
   

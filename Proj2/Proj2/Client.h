@@ -3,11 +3,9 @@
 #include <iostream>
 #include <string>
 #include <vector>
-
 #include "utilities.h"
-#include "defs.h"
-#include "Packet.h"
 #include "Address.h"
+#include "Packet.h"
 
 using namespace std;
 
@@ -23,7 +21,7 @@ class Client{
  public:
   Client();
   Client(string name, unsigned VATnumber, unsigned short familySize, Address address);  // for a new client
-  Client(string name, unsigned VATnumber, unsigned short familySize, Address address, vector<Packet> & packets, unsigned totalPurchased);  // client read from file
+  Client(string name, unsigned VATnumber, unsigned short familySize, Address address, vector<Packet> &packets, unsigned totalPurchased);  // client read from file
 
   // GET methods
   
@@ -47,3 +45,5 @@ class Client{
 
   friend ostream& operator<<(ostream& out, const Client & client);
 };
+
+int findClient(vector<Client> clients, unsigned VATnumber);

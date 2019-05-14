@@ -3,9 +3,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
-
 #include "utilities.h"
-#include "defs.h"
 #include "Date.h"
 
 using namespace std;
@@ -50,3 +48,5 @@ public:
 };
 
 vector<Packet> findPackets(const vector<int> &IDs, const vector<Packet> &packets);
+
+int findPacket(const int &ID, const vector<Packet> &packets);

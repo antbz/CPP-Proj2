@@ -3,14 +3,14 @@
 #include "Date.h"
 #include "Packet.h"
 #include "Client.h"
+#include "Agency.h"
+#include "Menus.h"
 
 using namespace std;
 
 int mainz() {
-	string date = "1/2/1";
-	cout << validDate(date) << endl;
-	Date date1(date);
-	cout << date1 << endl;
+	Agency agency("agency.txt");
+	mainMenu(agency);
 	char c;
 	cin >> c;
 	return 0;

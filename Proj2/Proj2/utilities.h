@@ -31,4 +31,6 @@ void line(int size, char ch = '-');
 
 void cinERR(const string &message);
 
-void getOption(int &dest, const string &message = "Opção: ");
+void getOption(int &dest, const string &message = "Option: ");
+
+//bool buyPack(Agency agency, int c_pos, int p_pos);

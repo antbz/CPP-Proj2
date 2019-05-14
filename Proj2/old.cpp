@@ -1034,8 +1034,6 @@ int deletePack(vector<Pack> &packs, int id) {
 // Pack purchase functions
 //
 bool buyPack(Client &client, Pack &pack) {
-    clientsModify = true;
-    packsModify = true;
     if (pack.totalSeats - pack.soldSeats <= 0) {
         cout << "Pacote esgotado!";
         return false;

@@ -5,7 +5,6 @@
 #include <vector>
 
 #include "utilities.h"
-#include "defs.h"
 
 using namespace std;
 

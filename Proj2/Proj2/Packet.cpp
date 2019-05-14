@@ -111,3 +111,16 @@ vector<Packet> findPackets(const vector<int> &IDs, const vector<Packet> &packets
     }
     return result;
 }
+
+int findPacket(const int &ID, const vector<Packet> &packets) {
+	int result = -1;
+
+	for (int i = 0; i < packets.size(); i++) {
+		if (ID == packets.at(i).getId()) {
+			result = i;
+			break;
+		}
+	}
+
+	return result;
+}

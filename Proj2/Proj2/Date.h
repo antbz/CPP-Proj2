@@ -3,7 +3,6 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "defs.h"
 #include "utilities.h"
 
 using namespace std;

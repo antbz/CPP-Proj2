@@ -95,7 +95,8 @@ void cinERR(const string &message) {
 	cin.clear();
 }
 
-void getOption(int &dest, const string &message = "Opção: ") {
+
+void getOption(int &dest, const string &message) {
 	// Tries to get a valid int option from cin to use in a switch-case
 	string str;
 
@@ -109,7 +110,28 @@ void getOption(int &dest, const string &message = "Opção: ") {
 		}
 		catch (invalid_argument) {
 			str = "";
-			cinERR("ERRO: Entrada inválida, tente outra vez");
+			cinERR("ERROR: Invalid entry, try again");
 		}
 	}
 }
+/*
+bool buyPack(Agency agency, int c_pos, int p_pos) {
+	vector<Client> c_tmp = agency.getClients();
+	vector<Packet> p_tmp = agency.getPackets();
+
+	if (p_tmp.at(p_pos).getMaxPersons() == 0) {
+		cout << "Packet Sold Out!";
+		return false;
+	}
+
+	vector<Packet> lpacket = c_tmp.at(c_pos).getPacketList();
+	lpacket.push_back(p_tmp.at(p_pos));
+	c_tmp.at(c_pos).setPacketList(lpacket);
+
+	p_tmp.at(p_pos).setSoldPersons(p_tmp.at(p_pos).getSoldPersons()+1);
+	p_tmp.at(p_pos).setMaxPersons(p_tmp.at(p_pos).getMaxPersons()-1);
+
+	agency.setClients(c_tmp);
+	agency.setPackets(p_tmp);
+	return true;
+}*/

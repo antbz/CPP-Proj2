@@ -8,13 +8,13 @@
 #include <vector>
 #include <fstream>
 #include <cmath>
+#include "utilities.h"
 #include "Agency.h"
-#include "Client.h"
-#include "Address.h"
-#include "Packet.h"
+
 
 using namespace std;
 
 
+void mainMenuSelect(Agency agency);
 
 void mainMenu(Agency agency);

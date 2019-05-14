@@ -91,3 +91,16 @@ ostream& operator<<(ostream& out, const Client &client){
     out << "\\_" << endl;
 	return out;
 }
+
+int findClient(vector<Client> clients, unsigned VATnumber) {
+	int result = -1;
+
+	for (int i = 0; i < clients.size(); i++) {
+		if (clients.at(i).getVATnumber() == VATnumber) {
+			result = i;
+			break;
+		}
+	}
+
+	return result;
+}
