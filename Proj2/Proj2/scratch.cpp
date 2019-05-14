@@ -9,11 +9,21 @@
 using namespace std;
 
 int mainz() {
-
+    char c;
     Agency NiceHols("agency.txt");
 
-    cout << NiceHols;
+    cout << NiceHols.getPackets().at(0);
 
-    char c;
+    cin >> c;
+    vector <Packet> tmp = NiceHols.getPackets();
+    Date datta("2019/1/2");
+    tmp.at(0).setBeginDate(datta);
+    NiceHols.setPackets(tmp);
+    cout << endl << NiceHols.getPackets().at(0);
+
+    cin >> c;
+
+    NiceHols.saveAgency();
+
     cin >> c;
 }
