@@ -14,10 +14,9 @@
 
 using namespace std;
 
+void mainMenuSelect(Agency &agency);
 
 void mainMenu(Agency &agency);
-
-void mainMenuSelect(Agency &agency);
 
 void packetsMenu(Agency &agency);
 
