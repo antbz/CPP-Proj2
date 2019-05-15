@@ -341,6 +341,27 @@ bool editAgency(Agency &agency) {
     return true;
 }
 
+bool buyPack(Agency &agency, int c_pos, int p_pos) {
+    vector<Client> c_tmp = agency.getClients();
+    vector<Packet> p_tmp = agency.getPackets();
+
+    if (p_tmp.at(p_pos).getMaxPersons() == 0) {
+        cout << "Packet Sold Out!";
+        return false;
+    }
+
+    vector<Packet> lpacket = c_tmp.at(c_pos).getPacketList();
+    lpacket.push_back(p_tmp.at(p_pos));
+    c_tmp.at(c_pos).setPacketList(lpacket);
+
+    p_tmp.at(p_pos).setSoldPersons(p_tmp.at(p_pos).getSoldPersons() + 1);
+    p_tmp.at(p_pos).setMaxPersons(p_tmp.at(p_pos).getMaxPersons() - 1);
+
+    agency.setClients(c_tmp);
+    agency.setPackets(p_tmp);
+    return true;
+}
+
 bool newPacket(Agency &agency) {
     vector<Packet> temp_packets = agency.getPackets();
     string sites_str, beginDate_str, endDate_str, str;
@@ -437,8 +458,6 @@ bool newPacket(Agency &agency) {
     agency.setLastID(id);
     temp_packets.emplace_back(id, sites, beginDate, endDate, pricePerPerson, totalPersons, soldPersons, maxPersons);
     agency.setPackets(temp_packets);
-
-    return true;
 }
 
 bool removePacket(Agency &agency) {
