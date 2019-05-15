@@ -87,6 +87,13 @@ void mainMenuSelect(Agency &agency) {
                 getline(cin, str);
                 mainMenu(agency);
                 break;
+			case 2: {
+				salesReport(agency);
+				cout << endl << "ENTER to go back";
+				getline(cin, str);
+				mainMenu(agency);
+				break;
+			}
 		    case 4: // Packet management
 		        packetsMenu(agency);
 		        break;

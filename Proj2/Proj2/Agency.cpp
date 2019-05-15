@@ -262,6 +262,50 @@ ostream& operator<<(ostream& out, const Agency &agency){
     return out;
 }
 
+bool buyPack(Agency &agency, int c_pos, int p_pos) {
+    vector<Client> c_tmp = agency.getClients();
+    vector<Packet> p_tmp = agency.getPackets();
+
+
+    if (p_tmp.at(p_pos).getMaxPersons() == 0) {
+        cout << "Packet Sold Out!";
+        return false;
+    }
+
+    vector<Packet> lpacket = c_tmp.at(c_pos).getPacketList();
+    lpacket.push_back(p_tmp.at(p_pos));
+    c_tmp.at(c_pos).setPacketList(lpacket);
+
+    p_tmp.at(p_pos).setSoldPersons(p_tmp.at(p_pos).getSoldPersons() + 1);
+    p_tmp.at(p_pos).setMaxPersons(p_tmp.at(p_pos).getMaxPersons() - 1);
+
+    agency.setClients(c_tmp);
+    agency.setPackets(p_tmp);
+    return true;
+}
+
+void salesReport(Agency &agency) {
+    line(35);
+    cout << right << "Report " << agency.getName() << endl;
+    line(35);
+    cout << setw(4) << left << '-' << agency.getClients().size() << " clients" << endl;
+    cout << setw(4) << left << '-' << agency.getPackets().size() << " packets" << endl;
+
+    long n_sales = 0, np_sales = 0;
+    double v_sales = 0, vp_sales = 0;
+    for (int i = 0; i < agency.getPackets().size(); i++) {
+        n_sales += agency.getPackets().at(i).getSoldPersons();
+        v_sales += agency.getPackets().at(i).getSoldPersons() * agency.getPackets().at(i).getPricePerPerson();
+        np_sales += agency.getPackets().at(i).getMaxPersons();
+        vp_sales += agency.getPackets().at(i).getMaxPersons() * agency.getPackets().at(i).getPricePerPerson();
+    }
+
+    cout << setw(4) << left << '-' << "Sold packets: " << n_sales << endl;
+    cout << setw(4) << left << '-' << "Value of sold packets: " << v_sales << endl;
+    cout << setw(4) << left << '-' << "Packets still available: " << np_sales << endl;
+    cout << setw(4) << left << '-' << "Value of packets still available: " << vp_sales << endl;
+}
+
 bool editAgency(Agency &agency) {
     string name, VATnumber, URL, address_str, clientsFileName, packetsFileName;
     Address address;
@@ -338,27 +382,6 @@ bool editAgency(Agency &agency) {
     agency.setAddress(address);
     agency.setClientsFileName(clientsFileName);
     agency.setPacketsFileName(packetsFileName);
-    return true;
-}
-
-bool buyPack(Agency &agency, int c_pos, int p_pos) {
-    vector<Client> c_tmp = agency.getClients();
-    vector<Packet> p_tmp = agency.getPackets();
-
-    if (p_tmp.at(p_pos).getMaxPersons() == 0) {
-        cout << "Packet Sold Out!";
-        return false;
-    }
-
-    vector<Packet> lpacket = c_tmp.at(c_pos).getPacketList();
-    lpacket.push_back(p_tmp.at(p_pos));
-    c_tmp.at(c_pos).setPacketList(lpacket);
-
-    p_tmp.at(p_pos).setSoldPersons(p_tmp.at(p_pos).getSoldPersons() + 1);
-    p_tmp.at(p_pos).setMaxPersons(p_tmp.at(p_pos).getMaxPersons() - 1);
-
-    agency.setClients(c_tmp);
-    agency.setPackets(p_tmp);
     return true;
 }
 
@@ -482,6 +505,12 @@ bool editPacket(Agency &agency) {
         cinERR("ERROR: Packet does not exist, try again!");
     } while (packet_pos == -1);
 
+    string sites_str, beginDate_str, endDate_str;
+    vector<string> sites;
+    Date beginDate, endDate;
+    double pricePerPerson;
+    unsigned totalPersons, soldPersons, maxPersons;
+    int id;
 
     cout << setw(2) << ' ' << "EDITING PACK (* - cancel)" << temp_packets.at(packet_pos).getId() << endl;
     cout << setw(4) << left << '|' << "Destinos (" << sitesVectToStr(temp_packets.at(packet_pos).getSites()) << "): ";
@@ -509,12 +538,6 @@ bool removePacket(Agency &agency) {
         cinERR("ERROR: Packet does not exist, try again!");
     } while (packet_pos == -1);
 
-    string sites_str, beginDate_str, endDate_str;
-    vector<string> sites;
-    Date beginDate, endDate;
-    double pricePerPerson;
-    unsigned totalPersons, soldPersons, maxPersons;
-    int id;
 
     temp_packets.at(packet_pos).setId(-temp_packets.at(packet_pos).getId());
     agency.setPackets(temp_packets);
