@@ -46,7 +46,7 @@ void mainMenuSelect(Agency &agency) {
                     else if (isNumeric(str) && str.length() == 9) {
                         client_pos = findClient(agency.getClients(), stoi(str));
                         if (client_pos == -1) {
-                            str = "0";
+                            str = "*";
                             cinERR("Client does not exist!");
                         }
                         break;
@@ -60,7 +60,7 @@ void mainMenuSelect(Agency &agency) {
                     break;
                 }
                 while (true) {
-                    cout << "Packet ID (0 - cancel): ";
+                    cout << "Packet ID (* - cancel): ";
                     getline(cin, str);
                     if (str == "*") {
                         break;
@@ -68,7 +68,7 @@ void mainMenuSelect(Agency &agency) {
                     else if (isNumeric(str)) {
                         packet_pos = findPacket(stoi(str), agency.getPackets());
                         if (packet_pos == -1) {
-                            str = "0";
+                            str = "*";
                             cinERR("Packet does not exist!");
                         }
                         break;
