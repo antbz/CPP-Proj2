@@ -4,7 +4,7 @@ Packet::Packet() {
 
 }
 
-Packet::Packet(unsigned id, vector<string> sites, Date begin, Date end, double pricePerPerson, unsigned totalPersons, unsigned soldPersons, unsigned maxPersons) {
+Packet::Packet(int id, vector<string> sites, Date begin, Date end, double pricePerPerson, unsigned totalPersons, unsigned soldPersons, unsigned maxPersons) {
 	this->id = id;
 	this->sites = sites;
 	this->begin = begin;
@@ -17,7 +17,7 @@ Packet::Packet(unsigned id, vector<string> sites, Date begin, Date end, double p
 
 // metodos GET
 
-unsigned Packet::getId() const {
+int Packet::getId() const {
 	return id;
 }
 
@@ -51,7 +51,7 @@ unsigned Packet::getMaxPersons() const {
 
 // metodos SET
 
-void Packet::setId(unsigned id) {
+void Packet::setId(int id) {
 	this->id = id;
 }
 

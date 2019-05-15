@@ -343,7 +343,6 @@ bool editAgency(Agency &agency) {
 
 bool newPacket(Agency &agency) {
     vector<Packet> temp_packets = agency.getPackets();
-//    Packet new_packet;
     string sites_str, beginDate_str, endDate_str, str;
     vector<string> sites;
     Date beginDate, endDate;
@@ -438,4 +437,33 @@ bool newPacket(Agency &agency) {
     agency.setLastID(id);
     temp_packets.emplace_back(id, sites, beginDate, endDate, pricePerPerson, totalPersons, soldPersons, maxPersons);
     agency.setPackets(temp_packets);
+
+    return true;
+}
+
+bool removePacket(Agency &agency) {
+    vector<Packet> temp_packets = agency.getPackets();
+    string str;
+    int packet_pos = -1;
+
+    do {
+        cout << "ID of packet to remove (* - cancel): ";
+        getline(cin, str);
+        if (str == "*")
+            return false;
+        try {
+            packet_pos = findPacket(stoi(str), temp_packets);
+        } catch (invalid_argument) {
+            cinERR("ERROR: Invalid entry, try again!");
+            continue;
+        }
+        if (packet_pos != -1)
+            break;
+        cinERR("ERROR: Packet does not exist, try again!");
+    } while (packet_pos == -1);
+
+
+    temp_packets.at(packet_pos).setId(-temp_packets.at(packet_pos).getId());
+    agency.setPackets(temp_packets);
+    cout << "Pack removed!";
 }

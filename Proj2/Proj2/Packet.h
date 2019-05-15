@@ -10,7 +10,7 @@ using namespace std;
 
 class Packet {
 private:
-	unsigned id; // packet unique identifier
+	int id; // packet unique identifier
 	vector<string> sites; // touristic sites to visit
 	Date begin;  // begin date
 	Date end;  // end date
@@ -20,10 +20,10 @@ private:
 	unsigned maxPersons; // number of persons still available in the packet (updated whenever the packet is sold to a new client)
 public:
 	Packet();
-	Packet(unsigned id, vector<string> sites, Date begin, Date end, double pricePerPerson, unsigned totalPersons, unsigned soldPersons, unsigned maxPersons);
+	Packet(int id, vector<string> sites, Date begin, Date end, double pricePerPerson, unsigned totalPersons, unsigned soldPersons, unsigned maxPersons);
 
 	// GET methods
-	unsigned getId() const;
+	int getId() const;
 	vector<string> getSites() const;
 	Date getBeginDate() const;
 	Date getEndDate() const;
@@ -33,7 +33,7 @@ public:
 	unsigned getMaxPersons() const;
 
 	// SET methods
-	void setId(unsigned id);  // to set negatve if "deprecated"
+	void setId(int id);  // to set negatve if "deprecated"
 	void setSites(vector<string> sites);
 	void setBeginDate(Date begin);
 	void setEndDate(Date end);

@@ -69,3 +69,5 @@ class Agency{
 bool editAgency(Agency &agency);
 
 bool newPacket(Agency &agency);
+
+bool removePacket(Agency &agency);
