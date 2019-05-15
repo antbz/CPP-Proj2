@@ -80,9 +80,9 @@ void mainMenuSelect(Agency &agency) {
                     mainMenu(agency);
                     break;
                 }
-                /*if (buyPack(agency, client_pos, packet_pos)) {
+                if (buyPack(agency, client_pos, packet_pos)) {
                     cout << "Successfull purchase!";
-                }*/
+                }
                 cout << endl << "ENTER to go to the MAIN MENU";
                 getline(cin, str);
                 mainMenu(agency);
@@ -129,7 +129,7 @@ void packetsMenuSelect(Agency &agency) {
                 break;
             case 3: {
                 newPacket(agency);
-                cout << endl << "ENTER para voltar atrás";
+                cout << endl << "ENTER to go back";
                 getline(cin, str);
                 agencyMenu(agency);
                 break;
@@ -168,13 +168,13 @@ void agencyMenuSelect(Agency &agency) {
                 break;
             case 1:
                 cout << agency;
-                cout << endl << "ENTER para voltar atrás";
+                cout << endl << "ENTER to go back";
                 getline(cin, str);
                 agencyMenu(agency);
                 break;
             case 2:
                 editAgency(agency);
-                cout << endl << "ENTER para voltar atrás";
+                cout << endl << "ENTER to go back";
                 getline(cin, str);
                 agencyMenu(agency);
                 break;

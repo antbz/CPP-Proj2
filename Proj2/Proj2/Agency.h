@@ -69,3 +69,5 @@ class Agency{
 bool editAgency(Agency &agency);
 
 bool newPacket(Agency &agency);
+
+bool buyPack(Agency &agency, int c_pos, int p_pos);
