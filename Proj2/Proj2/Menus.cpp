@@ -38,9 +38,9 @@ void mainMenuSelect(Agency &agency) {
             case 1: // Make purchase
                 int client_pos, packet_pos;
                 while (true) {
-                    cout << "Client NIF (0 - cancel): ";
+                    cout << "Client NIF (* - cancel): ";
                     getline(cin, str);
-                    if (str == "0") {
+                    if (str == "*") {
                         break;
                     }
                     else if (isNumeric(str) && str.length() == 9) {
@@ -53,7 +53,7 @@ void mainMenuSelect(Agency &agency) {
                     }
                     cinERR("ERROR: Invalid NIF, try again!");
                 }
-                if (str == "0") {
+                if (str == "*") {
                     cout << endl << "ENTER to go to the MAIN MENU";
                     getline(cin, str);
                     mainMenu(agency);
@@ -62,7 +62,7 @@ void mainMenuSelect(Agency &agency) {
                 while (true) {
                     cout << "Packet ID (0 - cancel): ";
                     getline(cin, str);
-                    if (str == "0") {
+                    if (str == "*") {
                         break;
                     }
                     else if (isNumeric(str)) {
@@ -74,7 +74,7 @@ void mainMenuSelect(Agency &agency) {
                         break;
                     }
                 }
-                if (str == "0") {
+                if (str == "*") {
                     cout << endl << "ENTER to go to the MAIN MENU";
                     getline(cin, str);
                     mainMenu(agency);
@@ -87,7 +87,10 @@ void mainMenuSelect(Agency &agency) {
                 getline(cin, str);
                 mainMenu(agency);
                 break;
-		    case 5:
+		    case 4: // Packet management
+		        packetsMenu(agency);
+		        break;
+		    case 5: // Agency management
 		        agencyMenu(agency);
                 break;
             default:
@@ -109,7 +112,7 @@ void packetsMenu(Agency &agency) {
     cout << endl << setw(4) << left << '|' << "0. GO BACK" << endl;
     line(35);
 
-//    packetsMenuSelect(agency);
+    packetsMenuSelect(agency);
 }
 
 void packetsMenuSelect(Agency &agency) {

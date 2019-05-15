@@ -266,14 +266,14 @@ bool editAgency(Agency &agency) {
     string name, VATnumber, URL, address_str, clientsFileName, packetsFileName;
     Address address;
 
-    cout << setw(2) << ' ' << "EDITING AGENCY (0 - cancel)" << endl;
+    cout << setw(2) << ' ' << "EDITING AGENCY (* - cancel)" << endl;
     cout << "/" << endl;
 
     cout << setw(4) << left << '|' << "Name (" << agency.getName() << "): ";
     getline(cin, name);
     if (name.empty()) {
         name = agency.getName();
-    } else if (name == "0") {
+    } else if (name == "*") {
         return false;
     }
 
@@ -283,7 +283,7 @@ bool editAgency(Agency &agency) {
         if (VATnumber.empty()) {
             VATnumber = to_string(agency.getVATnumber());
             break;
-        } else if (VATnumber == "0") {
+        } else if (VATnumber == "*") {
             return false;
         } else if (validNIF(VATnumber)) {
             break;
@@ -295,7 +295,7 @@ bool editAgency(Agency &agency) {
     getline(cin, URL);
     if (URL.empty()) {
         URL = agency.getURL();
-    } else if (URL == "0") {
+    } else if (URL == "*") {
         return false;
     }
 
@@ -305,7 +305,7 @@ bool editAgency(Agency &agency) {
         if (address_str.empty()) {
             address = agency.getAddress();
             break;
-        } else if (address_str == "0") {
+        } else if (address_str == "*") {
             return false;
         } else {
             if (validAddress(address_str, ',')) {
@@ -320,7 +320,7 @@ bool editAgency(Agency &agency) {
     getline(cin, clientsFileName);
     if (clientsFileName.empty()) {
         clientsFileName = agency.getClientsFileName();
-    } else if (clientsFileName == "0") {
+    } else if (clientsFileName == "*") {
         return false;
     }
 
@@ -328,7 +328,7 @@ bool editAgency(Agency &agency) {
     getline(cin, packetsFileName);
     if (packetsFileName.empty()) {
         packetsFileName = agency.getPacketsFileName();
-    } else if (packetsFileName == "0") {
+    } else if (packetsFileName == "*") {
         return false;
     }
 
