@@ -138,7 +138,14 @@ void packetsMenuSelect(Agency &agency) {
                 newPacket(agency);
                 cout << endl << "ENTER to go back";
                 getline(cin, str);
-                agencyMenu(agency);
+                packetsMenu(agency);
+                break;
+            }
+            case 4: {
+                removePacket(agency);
+                cout << endl << "ENTER para voltar atrás";
+                getline(cin, str);
+                packetsMenu(agency);
                 break;
             }
             default:

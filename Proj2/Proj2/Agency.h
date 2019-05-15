@@ -68,8 +68,14 @@ class Agency{
 
 bool editAgency(Agency &agency);
 
+bool buyPack(Agency &agency, int c_pos, int p_pos);
+
 bool newPacket(Agency &agency);
 
+<<<<<<< HEAD
 bool buyPack(Agency &agency, int c_pos, int p_pos);
 
 void salesReport(Agency &agency);
+=======
+bool removePacket(Agency &agency);
+>>>>>>> c70e67e2ebab92a2406cbcca02f4a07076e1a00e
