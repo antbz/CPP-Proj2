@@ -368,7 +368,8 @@ bool newPacket(Agency &agency) {
     vector<string> sites;
     Date beginDate, endDate;
     double pricePerPerson;
-    unsigned id, totalPersons, soldPersons, maxPersons;
+    unsigned totalPersons, soldPersons, maxPersons;
+    int id;
 
     id = agency.getLastID() + 1;
     cout << "NEW PACK ID: " << id << " (* - cancel)" << endl;
@@ -460,6 +461,33 @@ bool newPacket(Agency &agency) {
     agency.setPackets(temp_packets);
 }
 
+bool editPacket(Agency &agency) {
+    vector<Packet> temp_packets = agency.getPackets();
+    string str;
+    int packet_pos = -1;
+
+    do {
+        cout << "ID of packet to edit (* - cancel): ";
+        getline(cin, str);
+        if (str == "*")
+            return false;
+        try {
+            packet_pos = findPacket(stoi(str), temp_packets);
+        } catch (invalid_argument) {
+            cinERR("ERROR: Invalid entry, try again!");
+            continue;
+        }
+        if (packet_pos != -1)
+            break;
+        cinERR("ERROR: Packet does not exist, try again!");
+    } while (packet_pos == -1);
+
+
+    cout << setw(2) << ' ' << "EDITING PACK (* - cancel)" << temp_packets.at(packet_pos).getId() << endl;
+    cout << setw(4) << left << '|' << "Destinos (" << sitesVectToStr(temp_packets.at(packet_pos).getSites()) << "): ";
+
+}
+
 bool removePacket(Agency &agency) {
     vector<Packet> temp_packets = agency.getPackets();
     string str;
@@ -481,6 +509,12 @@ bool removePacket(Agency &agency) {
         cinERR("ERROR: Packet does not exist, try again!");
     } while (packet_pos == -1);
 
+    string sites_str, beginDate_str, endDate_str;
+    vector<string> sites;
+    Date beginDate, endDate;
+    double pricePerPerson;
+    unsigned totalPersons, soldPersons, maxPersons;
+    int id;
 
     temp_packets.at(packet_pos).setId(-temp_packets.at(packet_pos).getId());
     agency.setPackets(temp_packets);

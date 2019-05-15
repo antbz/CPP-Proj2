@@ -72,4 +72,6 @@ bool buyPack(Agency &agency, int c_pos, int p_pos);
 
 bool newPacket(Agency &agency);
 
+bool editPacket(Agency &agency);
+
 bool removePacket(Agency &agency);
