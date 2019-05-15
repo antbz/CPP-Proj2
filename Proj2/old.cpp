@@ -1067,8 +1067,6 @@ void salesReport(Agency &agency, vector<Client> &clients, vector<Pack> &packs) {
     cout << setw(4) << left << '-' << "Valor de pacotes vendidos: " << v_sales << endl;
     cout << setw(4) << left << '-' << "Número de pacotes por vender: " << np_sales << endl;
     cout << setw(4) << left << '-' << "Valor de pacotes por vender: " << vp_sales << endl;
-
-
 }
 
 
