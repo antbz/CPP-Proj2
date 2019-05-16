@@ -277,7 +277,10 @@ bool buyPack(Agency &agency, int c_pos, int p_pos) {
     vector<Packet> lpacket = c_tmp.at(c_pos).getPacketList();
     lpacket.push_back(p_tmp.at(p_pos));
     c_tmp.at(c_pos).setPacketList(lpacket);
-    c_tmp.at(c_pos).setPacketListStr(c_tmp.at(c_pos).getPacketListStr() + "; " + to_string(p_tmp.at(p_pos).getId()));
+    if (c_tmp.at(c_pos).getPacketListStr().empty())
+        c_tmp.at(c_pos).setPacketListStr(to_string(p_tmp.at(p_pos).getId()));
+    else
+        c_tmp.at(c_pos).setPacketListStr(c_tmp.at(c_pos).getPacketListStr() + "; " + to_string(p_tmp.at(p_pos).getId()));
     c_tmp.at(c_pos).setTotalPurchased(c_tmp.at(c_pos).getTotalPurchased() + p_tmp.at(p_pos).getPricePerPerson());
 
     p_tmp.at(p_pos).setSoldPersons(p_tmp.at(p_pos).getSoldPersons() + 1);
