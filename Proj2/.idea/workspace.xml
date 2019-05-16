@@ -12,13 +12,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d9269aba-3a77-4920-9dbf-ca6f42198c44" name="Default Changelist" comment="Merge branch 'master' of https://github.com/antbz/CPP-Proj2&#10;&#10;# Conflicts:&#10;#&#9;Proj2/Proj2/Source.cpp">
-      <change beforePath="$PROJECT_DIR$/Proj2/Agency.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Proj2/Agency.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Proj2/Agency.h" beforeDir="false" afterPath="$PROJECT_DIR$/Proj2/Agency.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Proj2/Client.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Proj2/Client.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Proj2/Client.h" beforeDir="false" afterPath="$PROJECT_DIR$/Proj2/Client.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Proj2/Menus.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Proj2/Menus.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Proj2/Packet.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Proj2/Packet.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Proj2/Packet.h" beforeDir="false" afterPath="$PROJECT_DIR$/Proj2/Packet.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Proj2/scratch.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Proj2/scratch.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../clients.txt" beforeDir="false" />
     </list>
@@ -47,11 +40,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Proj2/scratch.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="15" column="12" lean-forward="true" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="12" />
+            <state relative-caret-position="304">
+              <caret line="16" column="1" lean-forward="true" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -177,11 +170,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cmake-build-debug/clients.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="214">
-              <caret line="54" column="3" selection-start-line="54" selection-start-column="3" selection-end-line="54" selection-end-column="3" />
+            <state relative-caret-position="480">
+              <caret line="68" column="1" lean-forward="true" selection-start-line="68" selection-start-column="1" selection-end-line="68" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -258,10 +251,10 @@
         <option value="$PROJECT_DIR$/Proj2/clients.txt" />
         <option value="$PROJECT_DIR$/Proj2/Agency.h" />
         <option value="$PROJECT_DIR$/Proj2/Menus.cpp" />
-        <option value="$PROJECT_DIR$/Proj2/scratch.cpp" />
         <option value="$PROJECT_DIR$/Proj2/Client.cpp" />
         <option value="$PROJECT_DIR$/Proj2/Agency.cpp" />
         <option value="$PROJECT_DIR$/cmake-build-debug/clients.txt" />
+        <option value="$PROJECT_DIR$/Proj2/scratch.cpp" />
       </list>
     </option>
   </component>
@@ -350,12 +343,12 @@
       <workItem from="1557754631733" duration="20054000" />
       <workItem from="1557838945789" duration="11119000" />
       <workItem from="1557867413347" duration="10862000" />
-      <workItem from="1557908997607" duration="24625000" />
+      <workItem from="1557908997607" duration="24743000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="66660000" />
+    <option name="totallyTimeSpent" value="66778000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -736,16 +729,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Proj2/scratch.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="15" column="12" lean-forward="true" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="12" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Proj2/Agency.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="703">
@@ -803,8 +786,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/cmake-build-debug/clients.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="54" column="3" selection-start-line="54" selection-start-column="3" selection-end-line="54" selection-end-column="3" />
+        <state relative-caret-position="480">
+          <caret line="68" column="1" lean-forward="true" selection-start-line="68" selection-start-column="1" selection-end-line="68" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Proj2/scratch.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="16" column="1" lean-forward="true" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

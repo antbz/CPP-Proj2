@@ -9,13 +9,9 @@
 
 using namespace std;
 
-int main() {
+int mainz() {
     Agency agency("agency.txt");
 
     mainMenu(agency);
-//    clientsMenu(agency);
-//    editClient(agency);
-
-//    cout << agency.getClients().at(0);
 
 }
