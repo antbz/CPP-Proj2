@@ -96,6 +96,10 @@ void mainMenuSelect(Agency &agency) {
 				mainMenu(agency);
 				break;
 			}
+			case 3: {
+			    clientsMenu(agency);
+			    break;
+			}
 		    case 4: // Packet management
 		        packetsMenu(agency);
 		        break;
@@ -136,6 +140,22 @@ void clientsMenuSelect(Agency &agency) {
             case 0:
                 mainMenu(agency);
                 break;
+            case 1: {
+                for (int i = 0; i < agency.getClients().size(); i++) {
+                    cout << agency.getClients().at(i);
+                }
+                cout << endl << "ENTER to go back";
+                getline(cin, str);
+                clientsMenu(agency);
+                break;
+            }
+            case 2: {
+                editClient(agency);
+                cout << endl << "ENTER to go back";
+                getline(cin, str);
+                clientsMenu(agency);
+                break;
+            }
             case 3: {
                 newClient(agency);
                 cout << endl << "ENTER to go back";

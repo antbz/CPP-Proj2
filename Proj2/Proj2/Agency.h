@@ -84,7 +84,6 @@ bool editClient(Agency &agency);
 
 bool removeClient(Agency &agency);
 
-
 bool newPacket(Agency &agency);
 
 bool editPacket(Agency &agency);

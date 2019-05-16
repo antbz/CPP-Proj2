@@ -106,10 +106,15 @@ ostream& operator<<(ostream& out, const Packet & packet) {
 vector<Packet> findPackets(const vector<int> &IDs, const vector<Packet> &packets) {
     vector<Packet> result;
 	for (int i = 0; i < IDs.size(); i++) {
+	    bool found = false;
     	for (int j = 0; j < packets.size(); j++) {
-			if (packets.at(j).getId() == IDs.at(i) || packets.at(j).getId() == -IDs.at(i))
-				result.push_back(packets.at(j));
+			if (packets.at(j).getId() == IDs.at(i) || packets.at(j).getId() == -IDs.at(i)) {
+                result.push_back(packets.at(j));
+                found = true;
+            }
     	}
+    	if (!found)
+    	    throw 100;
     }
     return result;
 }
@@ -162,4 +167,13 @@ int findPacket(const int &ID, const vector<Packet> &packets) {
 	}
 
 	return result;
+}
+
+vector<int> getIDs(const vector<Packet> &packets) {
+    vector<int> result;
+
+    for (int i = 0; i < packets.size(); i++)
+        result.push_back(packets.at(i).getId());
+
+    return result;
 }

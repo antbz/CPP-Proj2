@@ -57,3 +57,4 @@ vector<Packet> findPackets(const Date &beginDate, const Date &endDate, const str
 
 int findPacket(const int &ID, const vector<Packet> &packets);
 
+vector<int> getIDs(const vector<Packet> &packets);

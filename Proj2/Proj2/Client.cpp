@@ -12,12 +12,13 @@ Client::Client(string name, unsigned VATnumber, unsigned short familySize, Addre
     this->totalPurchased = 0;
 }
 
-Client::Client(string name, unsigned VATnumber, unsigned short familySize, Address address, vector<Packet> &packets, double totalPurchased){
+Client::Client(string name, unsigned VATnumber, unsigned short familySize, Address address, vector<Packet> &packets, string packetListStr, double totalPurchased){
     this->name = name;
     this->VATnumber = VATnumber;
     this->familySize = familySize;
     this->address = address;
     this->packets = packets;
+    this->packetListStr = packetListStr;
     this->totalPurchased = totalPurchased;
 }
 
@@ -45,6 +46,10 @@ vector<Packet> Client::getPacketList() const{
     return packets;
 }
 
+string Client::getPacketListStr() const {
+    return packetListStr;
+}
+
 double Client::getTotalPurchased() const{
     return totalPurchased;
 }
@@ -62,12 +67,19 @@ void Client::setVATnumber(unsigned VATnumber){
 void Client::setFamilySize(unsigned short familySize){
     this->familySize = familySize;
 }
+
 void Client::setAddress(Address address){
     this->address = address;
 }
+
 void Client::setPacketList(vector<Packet> &packets){
     this->packets = packets;
 }
+
+void Client::setPacketListStr(string packetListStr) {
+    this->packetListStr = packetListStr;
+}
+
 void Client::setTotalPurchased(double totalPurchased){
     this->totalPurchased = totalPurchased;
 }
@@ -83,11 +95,11 @@ ostream& operator<<(ostream& out, const Client &client){
     out << setw(4) << left << '|' << "Purchased packs: ";
     for (int i = 0; i < client.packets.size(); i++) {
         if (i == client.packets.size() - 1)
-            out << client.packets.at(i).getId() << endl;
+            out << client.packets.at(i).getId();
         else
             out << client.packets.at(i).getId() << ", ";
     }
-    out << setw(4) << left << '|' << "Total of purchased packs: " << client.totalPurchased << endl;
+    out << endl << setw(4) << left << '|' << "Total of purchased packs: " << client.totalPurchased << endl;
     out << "\\_" << endl;
 	return out;
 }

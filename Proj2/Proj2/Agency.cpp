@@ -5,7 +5,7 @@ unsigned Agency::lastID;
 Agency::Agency(string fileName) {
     clientsInfoHasChanged = false;
     packetsInfoHasChanged = false;
-    agencyInfoHasChanged = false;
+    agencyInfoHasChanged = true;
     this->fileName = fileName;
 
     string str;
@@ -82,6 +82,7 @@ Agency::Agency(string fileName) {
       getline(clients_file, str);
       clients.back().setAddress(Address(str));
       getline(clients_file, str);
+      clients.back().setPacketListStr(str);
       vector<Packet> pacc = findPackets(strToIntVect(str, ';'), packets);
       clients.back().setPacketList(pacc);
       getline(clients_file, str);
@@ -145,15 +146,16 @@ void Agency::saveAgency() {
             clients_file << clients.at(i).getVATnumber() << endl;
             clients_file << clients.at(i).getFamilySize() << endl;
             clients_file << clients.at(i).getAddress() << endl;
-
+            clients_file << clients.at(i).getPacketListStr() << endl;
+            /*
             for (int j = 0; j < clients.at(i).getPacketList().size(); j++) {
                 if (j == 0)
                     clients_file << clients.at(i).getPacketList().at(j).getId();
                 else
                     clients_file << "; " << clients.at(i).getPacketList().at(j).getId();
             }
-
-            clients_file << endl << clients.at(i).getTotalPurchased();
+            */
+            clients_file << clients.at(i).getTotalPurchased();
 
             if (i != clients.size() - 1)
                 clients_file << endl << "::::::::::" << endl;
@@ -275,6 +277,7 @@ bool buyPack(Agency &agency, int c_pos, int p_pos) {
     vector<Packet> lpacket = c_tmp.at(c_pos).getPacketList();
     lpacket.push_back(p_tmp.at(p_pos));
     c_tmp.at(c_pos).setPacketList(lpacket);
+    c_tmp.at(c_pos).setPacketListStr(c_tmp.at(c_pos).getPacketListStr() + "; " + to_string(p_tmp.at(p_pos).getId()));
     c_tmp.at(c_pos).setTotalPurchased(c_tmp.at(c_pos).getTotalPurchased() + p_tmp.at(p_pos).getPricePerPerson());
 
     p_tmp.at(p_pos).setSoldPersons(p_tmp.at(p_pos).getSoldPersons() + 1);
@@ -495,9 +498,8 @@ bool editAgency(Agency &agency) {
 
 bool newClient(Agency &agency) {
     vector<Client> temp_clients = agency.getClients();
-    string name, address_str, packets_str, str;
+    string name, address_str, str;
     Address address;
-    vector<Packet> packets;
     unsigned nif, familySize;
 
     cout << "Name (* - cancel): ";
@@ -523,6 +525,8 @@ bool newClient(Agency &agency) {
         try {
             cout << "Family size: ";
             getline(cin, str);
+            if (str == "*")
+                return false;
             familySize = stoul(str);
             break;
         } catch (invalid_argument) {
@@ -554,7 +558,7 @@ bool editClient(Agency &agency) {
     int client_pos = -1;
 
     do {
-        cout << "NIF of client to remove (* - cancel): ";
+        cout << "NIF of client to edit (* - cancel): ";
         getline(cin, str);
         if (str == "*")
             return false;
@@ -569,7 +573,103 @@ bool editClient(Agency &agency) {
         cinERR("ERROR: Packet does not exist, try again!");
     } while (client_pos == -1);
 
+    string name, packets_str;
+    Address address;
+    vector<Packet> packets;
+    double totalPurchased;
+    unsigned nif, familySize;
 
+    cout << "Name (" << temp_clients.at(client_pos).getName() <<"): ";
+    getline(cin, str);
+    if (str == "*")
+        return false;
+    else if (str.empty())
+        name = temp_clients.at(client_pos).getName();
+    else
+        name = str;
+
+    while(true) {
+        cout << "NIF (" << temp_clients.at(client_pos).getVATnumber() <<"): ";
+        getline(cin, str);
+
+        if (validNIF(str)) {
+            nif = stoul(str);
+            break;
+        }
+        else if (str == "*")
+            return false;
+        else if (str.empty()) {
+            nif = temp_clients.at(client_pos).getVATnumber();
+            break;
+        }
+
+        cinERR("ERROR: Invalid NIF, try again!");
+    }
+
+    while (true) {
+        try {
+            cout << "Family size (" << temp_clients.at(client_pos).getFamilySize() <<"): ";
+            getline(cin, str);
+            if (str == "*")
+                return false;
+            else if (str.empty()) {
+                familySize = temp_clients.at(client_pos).getFamilySize();
+                break;
+            }
+            familySize = stoul(str);
+            break;
+        } catch (invalid_argument) {
+            cinERR("ERROR: Invalid entry, try again!");
+        }
+    }
+
+    while (true) {
+        cout << "Address (" << temp_clients.at(client_pos).getAddress() << "): ";
+        getline(cin, str);
+
+        if (str == "*")
+            return false;
+        else if (str.empty()) {
+            address = temp_clients.at(client_pos).getAddress();
+            break;
+        } else if (validAddress(str, ',')) {
+            address = Address(str, ',');
+            break;
+        }
+
+        cinERR("ERROR: Invalid address, input all parameters separated by ,");
+    }
+
+    while (true) {
+        cout << "Packets (" << temp_clients.at(client_pos).getPacketListStr() << "): ";
+        getline(cin, str);
+
+        if (str == "*")
+            return false;
+        else if (str.empty()) {
+            packets_str = temp_clients.at(client_pos).getPacketListStr();
+            packets = temp_clients.at(client_pos).getPacketList();
+            totalPurchased = temp_clients.at(client_pos).getTotalPurchased();
+            break;
+        }
+        packets_str = str;
+
+        try {
+            packets = findPackets(strToIntVect(str, ';'), agency.getPackets());
+            totalPurchased = 0;
+            for (int i = 0; i < packets.size(); i++)
+                totalPurchased += packets.at(i).getPricePerPerson();
+            cout << "Total purchased = " << totalPurchased;
+            break;
+        } catch (int &e) {
+            cinERR("ERROR: Invalid entry, separate IDs with ;");
+            continue;
+        }
+    }
+
+    temp_clients.at(client_pos) = Client(name, nif, familySize, address, packets, packets_str, totalPurchased);
+    agency.setClients(temp_clients);
+    return true;
 }
 
 bool removeClient(Agency &agency) {
@@ -846,6 +946,7 @@ bool editPacket(Agency &agency) {
         agency.setLastID(id);
     temp_packets.at(packet_pos) = Packet(id, sites, beginDate, endDate, pricePerPerson, totalPersons, soldPersons, maxPersons);
     agency.setPackets(temp_packets);
+    return true;
 }
 
 bool removePacket(Agency &agency) {
