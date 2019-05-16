@@ -9,10 +9,10 @@
 
 using namespace std;
 
-int mainz() {
+int main() {
     Agency agency("agency.txt");
 
 //    mainMenu(agency);
 
-    viewPacketsMenu(agency);
+    viewPackets(agency, 4);
 }

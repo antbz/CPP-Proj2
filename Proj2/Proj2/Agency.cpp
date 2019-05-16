@@ -661,3 +661,71 @@ bool removePacket(Agency &agency) {
     agency.setPackets(temp_packets);
     cout << "Pack removed!";
 }
+
+bool viewPackets(const Agency &agency) {
+    for (int i = 0; i < agency.getPackets().size(); i++) {
+        cout << "/" << endl;
+        cout << agency.getPackets().at(i);
+        cout << endl << "\\" << endl;
+    }
+}
+
+bool viewPackets(const Agency &agency, const string &site) {
+    vector<Packet> selected;
+    selected = findPackets(site, agency.getPackets());
+    for (int i = 0; i < selected.size(); i++) {
+        cout << "/" << endl;
+        cout << selected.at(i);
+        cout << endl << "\\" << endl;
+    }
+    if (selected.empty()) {
+        cinERR("No packets to specified destination");
+        return false;
+    }
+    return true;
+}
+
+bool viewPackets(const Agency &agency, const Date &beginDate, const Date &endDate) {
+    vector<Packet> selected;
+    selected = findPackets(beginDate, endDate, agency.getPackets());
+    for (int i = 0; i < selected.size(); i++) {
+        cout << "/" << endl;
+        cout << selected.at(i);
+        cout << endl << "\\" << endl;
+    }
+    if (selected.empty()) {
+        cinERR("No packets between specified dates");
+        return false;
+    }
+    return true;
+}
+
+bool viewPackets(const Agency &agency, const Date &beginDate, const Date &endDate, const string &site) {
+    vector<Packet> selected;
+    selected = findPackets(beginDate, endDate, site, agency.getPackets());
+    for (int i = 0; i < selected.size(); i++) {
+        cout << "/" << endl;
+        cout << selected.at(i);
+        cout << endl << "\\" << endl;
+    }
+    if (selected.empty()) {
+        cinERR("No packets between/to specified dates/destination");
+        return false;
+    }
+    return true;
+}
+
+bool viewPackets(const Agency &agency, const int &id) {
+    int pos = findPacket(id, agency.getPackets());
+
+    if (pos == -1) {
+        cinERR("No packet with specified id");
+        return false;
+    }
+
+    Packet selected = agency.getPackets().at(pos);
+
+    cout << "/" << endl;
+    cout << selected;
+    cout << endl << "\\" << endl;
+}

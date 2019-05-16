@@ -36,3 +36,5 @@ public:
 };
 
 bool validDate(string date);
+
+bool cmpDate(const Date &date_1, const Date &date_2);
