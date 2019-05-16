@@ -701,6 +701,7 @@ bool viewPackets(const Agency &agency) {
         cout << agency.getPackets().at(i);
         cout << endl << "\\" << endl;
     }
+	return true;
 }
 
 bool viewPackets(const Agency &agency, const string &site) {
