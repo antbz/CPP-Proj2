@@ -275,6 +275,7 @@ bool buyPack(Agency &agency, int c_pos, int p_pos) {
     vector<Packet> lpacket = c_tmp.at(c_pos).getPacketList();
     lpacket.push_back(p_tmp.at(p_pos));
     c_tmp.at(c_pos).setPacketList(lpacket);
+    c_tmp.at(c_pos).setTotalPurchased(c_tmp.at(c_pos).getTotalPurchased() + p_tmp.at(p_pos).getPricePerPerson());
 
     p_tmp.at(p_pos).setSoldPersons(p_tmp.at(p_pos).getSoldPersons() + 1);
     p_tmp.at(p_pos).setMaxPersons(p_tmp.at(p_pos).getMaxPersons() - 1);
@@ -489,6 +490,111 @@ bool editAgency(Agency &agency) {
     agency.setAddress(address);
     agency.setClientsFileName(clientsFileName);
     agency.setPacketsFileName(packetsFileName);
+    return true;
+}
+
+bool newClient(Agency &agency) {
+    vector<Client> temp_clients = agency.getClients();
+    string name, address_str, packets_str, str;
+    Address address;
+    vector<Packet> packets;
+    unsigned nif, familySize;
+
+    cout << "Name (* - cancel): ";
+    getline(cin, name);
+    if (name == "*")
+        return false;
+
+    while(true) {
+        cout << "NIF: ";
+        getline(cin, str);
+
+        if (validNIF(str)) {
+            nif = stoul(str);
+            break;
+        }
+        else if (str == "*")
+            return false;
+
+        cinERR("ERROR: Invalid NIF, try again!");
+    }
+
+    while (true) {
+        try {
+            cout << "Family size: ";
+            getline(cin, str);
+            familySize = stoul(str);
+            break;
+        } catch (invalid_argument) {
+            cinERR("ERROR: Invalid entry, try again!");
+        }
+    }
+
+    while (true) {
+        cout << "Address: ";
+        getline(cin, address_str);
+
+        if (validAddress(address_str, ',')) {
+            address = Address(address_str, ',');
+            break;
+        } else if (address_str == "*")
+            return false;
+
+        cinERR("ERROR: Invalid address, input all parameters separated by ,");
+    }
+
+    temp_clients.emplace_back(name, nif, familySize, address);
+    agency.setClients(temp_clients);
+    return true;
+}
+
+bool editClient(Agency &agency) {
+    vector<Client> temp_clients = agency.getClients();
+    string str;
+    int client_pos = -1;
+
+    do {
+        cout << "NIF of client to remove (* - cancel): ";
+        getline(cin, str);
+        if (str == "*")
+            return false;
+        if (!validNIF(str)) {
+            cinERR("ERROR: Invalid NIF, try again!");
+            continue;
+        }
+
+        client_pos = findClient(temp_clients, stoul(str));
+        if (client_pos != -1)
+            break;
+        cinERR("ERROR: Packet does not exist, try again!");
+    } while (client_pos == -1);
+
+
+}
+
+bool removeClient(Agency &agency) {
+    vector<Client> temp_clients = agency.getClients();
+    string str;
+    int client_pos = -1;
+
+    do {
+        cout << "NIF of client to remove (* - cancel): ";
+        getline(cin, str);
+        if (str == "*")
+            return false;
+        if (!validNIF(str)) {
+            cinERR("ERROR: Invalid NIF, try again!");
+            continue;
+        }
+
+        client_pos = findClient(temp_clients, stoul(str));
+        if (client_pos != -1)
+            break;
+        cinERR("ERROR: Packet does not exist, try again!");
+    } while (client_pos == -1);
+
+    temp_clients.erase(temp_clients.begin() + client_pos);
+    agency.setClients(temp_clients);
     return true;
 }
 

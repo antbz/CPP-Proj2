@@ -12,6 +12,8 @@ using namespace std;
 int mainz() {
     Agency agency("agency.txt");
 
-    mainMenu(agency);
+//    mainMenu(agency);
+    clientsMenu(agency);
+//    newClient(agency);
 
 }

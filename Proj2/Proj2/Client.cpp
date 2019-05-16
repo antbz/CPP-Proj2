@@ -12,7 +12,7 @@ Client::Client(string name, unsigned VATnumber, unsigned short familySize, Addre
     this->totalPurchased = 0;
 }
 
-Client::Client(string name, unsigned VATnumber, unsigned short familySize, Address address, vector<Packet> &packets, unsigned totalPurchased){
+Client::Client(string name, unsigned VATnumber, unsigned short familySize, Address address, vector<Packet> &packets, double totalPurchased){
     this->name = name;
     this->VATnumber = VATnumber;
     this->familySize = familySize;
@@ -45,7 +45,7 @@ vector<Packet> Client::getPacketList() const{
     return packets;
 }
 
-unsigned Client::getTotalPurchased() const{
+double Client::getTotalPurchased() const{
     return totalPurchased;
 }
 
@@ -68,7 +68,7 @@ void Client::setAddress(Address address){
 void Client::setPacketList(vector<Packet> &packets){
     this->packets = packets;
 }
-void Client::setTotalPurchased(unsigned totalPurchased){
+void Client::setTotalPurchased(double totalPurchased){
     this->totalPurchased = totalPurchased;
 }
 
