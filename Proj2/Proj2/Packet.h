@@ -49,5 +49,11 @@ public:
 
 vector<Packet> findPackets(const vector<int> &IDs, const vector<Packet> &packets);
 
+vector<Packet> findPackets(const string &site, const vector<Packet> &packets);
+
+vector<Packet> findPackets(const Date &beginDate, const Date &endDate, const vector<Packet> &packets);
+
+vector<Packet> findPackets(const Date &beginDate, const Date &endDate, const string &site, const vector<Packet> &packets);
+
 int findPacket(const int &ID, const vector<Packet> &packets);
 

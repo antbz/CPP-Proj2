@@ -135,6 +135,10 @@ void packetsMenuSelect(Agency &agency) {
             case 0:
                 mainMenu(agency);
                 break;
+            case 1: {
+                viewPacketsMenu(agency);
+                break;
+            }
             case 2: {
                 editPacket(agency);
                 cout << endl << "ENTER to go back";
@@ -151,7 +155,7 @@ void packetsMenuSelect(Agency &agency) {
             }
             case 4: {
                 removePacket(agency);
-                cout << endl << "ENTER para voltar atrás";
+                cout << endl << "ENTER to go back";
                 getline(cin, str);
                 packetsMenu(agency);
                 break;
@@ -191,6 +195,126 @@ void viewPacketsMenuSelect(Agency &agency) {
             case 0:
                 packetsMenu(agency);
                 break;
+            case 1: { // View all packets
+                viewPackets(agency);
+                cout << endl << "ENTER to go back";
+                getline(cin, str);
+                viewPacketsMenu(agency);
+                break;
+            }
+            case 2: { // Select based on site
+                cout << "Site (* - cancel): ";
+                getline(cin, str);
+                if (str == "*") {
+                    viewPacketsMenu(agency);
+                    return;
+                }
+                viewPackets(agency, str);
+                cout << endl << "ENTER to go back";
+                getline(cin, str);
+                viewPacketsMenu(agency);
+                break;
+            }
+            case 3: { // Select based on date
+                string beginDate_str, endDate_str;
+                Date beginDate, endDate;
+                do {
+                    cout << "Begin date (* - cancel): ";
+                    getline(cin, beginDate_str);
+                    if (validDate(beginDate_str)) {
+                        beginDate = Date(beginDate_str);
+                        break;
+                    } else if (beginDate_str == "*") {
+                        viewPacketsMenu(agency);
+                        return;
+                    }
+                    cinERR("ERROR: Invalid date, use format YYYY/MM/DD");
+                } while (!validDate(beginDate_str));
+
+                do {
+                    cout << "End date: ";
+                    getline(cin, endDate_str);
+                    if (validDate(endDate_str)) {
+                        endDate = Date(endDate_str);
+                        break;
+                    } else if (endDate_str == "*") {
+                        viewPacketsMenu(agency);
+                        return;
+                    }
+                    cinERR("ERROR: Invalid date, use format YYYY/MM/DD");
+                } while (!validDate(endDate_str));
+
+                viewPackets(agency, beginDate, endDate);
+                cout << endl << "ENTER to go back";
+                getline(cin, str);
+                viewPacketsMenu(agency);
+                break;
+            }
+            case 4: { // Select based on date and site
+                cout << "Site (* - cancel): ";
+                getline(cin, str);
+                if (str == "*") {
+                    viewPacketsMenu(agency);
+                    return;
+                }
+
+                string beginDate_str, endDate_str;
+                Date beginDate, endDate;
+                do {
+                    cout << "Begin date: ";
+                    getline(cin, beginDate_str);
+                    if (validDate(beginDate_str)) {
+                        beginDate = Date(beginDate_str);
+                        break;
+                    } else if (beginDate_str == "*") {
+                        viewPacketsMenu(agency);
+                        return;
+                    }
+                    cinERR("ERROR: Invalid date, use format YYYY/MM/DD");
+                } while (!validDate(beginDate_str));
+
+                do {
+                    cout << "End date: ";
+                    getline(cin, endDate_str);
+                    if (validDate(endDate_str)) {
+                        endDate = Date(endDate_str);
+                        break;
+                    } else if (endDate_str == "*") {
+                        viewPacketsMenu(agency);
+                        return;
+                    }
+                    cinERR("ERROR: Invalid date, use format YYYY/MM/DD");
+                } while (!validDate(endDate_str));
+
+                viewPackets(agency, beginDate, endDate, str);
+                cout << endl << "ENTER to go back";
+                getline(cin, str);
+                viewPacketsMenu(agency);
+                break;
+            }
+            case 5: { // Select based on ID
+                int id;
+                while (true) {
+                    try {
+                        cout << "ID (* - cancel): ";
+                        getline(cin, str);
+                        if (str == "*") {
+                            viewPacketsMenu(agency);
+                            return;
+                        }
+                        id = stoi(str);
+                        break;
+                    } catch (invalid_argument) {
+                        cinERR("ERROR: Invalid entry, try again!");
+                    }
+                }
+
+                viewPackets(agency, id);
+                cout << endl << "ENTER to go back";
+                getline(cin, str);
+                viewPacketsMenu(agency);
+                break;
+            }
             default:
                 valid = false;
                 cinERR("ERROR: Option does not exist, try again");

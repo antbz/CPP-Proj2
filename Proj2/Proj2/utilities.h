@@ -7,7 +7,11 @@
 #include <vector>
 #include <cmath>
 #include <algorithm>
+<<<<<<< HEAD
 #include <map>
+=======
+
+>>>>>>> 3b4b30db5850363809ceea03a6f5b9eaef18d31f
 
 using namespace std;
 

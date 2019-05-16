@@ -91,12 +91,12 @@ void Packet::setMaxPersons(unsigned maxPersons) {
 
  // shows a packet content 
 ostream& operator<<(ostream& out, const Packet & packet) {
-	out << "Packet ID       : " << packet.id << endl;
-	out << "Destination(s)  : " << sitesVectToStr(packet.sites) << endl;
-	out << "Begins          : " << packet.begin << endl;
-	out << "Ends            : " << packet.end << endl;
-	out << "Price Per Person: " << packet.pricePerPerson << endl;
-	out << "Available Stock : " << packet.maxPersons;
+	out << "| Packet ID       : " << packet.id << endl;
+	out << "| Destination(s)  : " << sitesVectToStr(packet.sites) << endl;
+	out << "| Begins          : " << packet.begin << endl;
+	out << "| Ends            : " << packet.end << endl;
+	out << "| Price Per Person: " << packet.pricePerPerson << endl;
+	out << "| Available Stock : " << packet.maxPersons;
 	return out;
 }
 
@@ -111,6 +111,43 @@ vector<Packet> findPackets(const vector<int> &IDs, const vector<Packet> &packets
 				result.push_back(packets.at(j));
     	}
     }
+    return result;
+}
+
+vector<Packet> findPackets(const string &site, const vector<Packet> &packets) {
+    vector<Packet> result;
+    for (int i = 0; i < packets.size(); i++) {
+        vector<string> sites = packets.at(i).getSites();
+        bool isThere = find(sites.begin(), sites.end(), site) != sites.end();
+        if (isThere) {
+            result.push_back(packets.at(i));
+        }
+    }
+
+    return result;
+}
+
+vector<Packet> findPackets(const Date &beginDate, const Date &endDate, const vector<Packet> &packets) {
+    vector<Packet> result;
+    for (int i = 0; i < packets.size(); i++) {
+        if (cmpDate(packets.at(i).getBeginDate(), beginDate) && cmpDate(endDate, packets.at(i).getEndDate()))
+            result.push_back(packets.at(i));
+    }
+
+    return result;
+}
+
+vector<Packet> findPackets(const Date &beginDate, const Date &endDate, const string &site, const vector<Packet> &packets) {
+    vector<Packet> result;
+    for (int i = 0; i < packets.size(); i++) {
+        vector<string> sites = packets.at(i).getSites();
+        bool condition = (find(sites.begin(), sites.end(), site) != sites.end()) &&
+            (cmpDate(packets.at(i).getBeginDate(), beginDate) && cmpDate(endDate, packets.at(i).getEndDate()));
+        if (condition) {
+            result.push_back(packets.at(i));
+        }
+    }
+
     return result;
 }
 

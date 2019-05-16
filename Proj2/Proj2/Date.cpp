@@ -108,3 +108,14 @@ bool validDate(string date) {
 	}
 	return true;
 }
+
+bool cmpDate(const Date &date_1, const Date &date_2) {
+	// Checks if date_1 is later than or the same as date_2
+	if (date_1.getYear() < date_2.getYear())
+		return false;
+	else if (date_1.getMonth() < date_2.getMonth() && date_1.getYear() == date_2.getYear())
+		return false;
+	else if (date_1.getDay() < date_2.getDay() && date_1.getMonth() == date_2.getMonth() && date_1.getYear() == date_2.getYear())
+		return false;
+	return true;
+}
