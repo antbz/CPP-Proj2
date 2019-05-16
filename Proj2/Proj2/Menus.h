@@ -18,6 +18,10 @@ void mainMenuSelect(Agency &agency);
 
 void mainMenu(Agency &agency);
 
+void clientsMenu(Agency &agency);
+
+void clientsMenuSelect(Agency &agency);
+
 void packetsMenu(Agency &agency);
 
 void packetsMenuSelect(Agency &agency);

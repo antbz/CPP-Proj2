@@ -109,6 +109,54 @@ void mainMenuSelect(Agency &agency) {
 	} while (!valid);
 }
 
+void clientsMenu(Agency &agency) {
+    line(35);
+    cout << right << setfill(' ') << setw(22) << "CLIENTS" << endl;
+    line(35);
+    cout << setw(4) << left << '|' << "1. Display clients" << endl;
+    cout << setw(4) << left << '|' << "2. Search & Edit client" << endl;
+    cout << setw(4) << left << '|' << "3. Create new client" << endl;
+    cout << setw(4) << left << '|' << "4. Remove client" << endl;
+    cout << endl << setw(4) << left << '|' << "0. GO BACK" << endl;
+    line(35);
+
+    clientsMenuSelect(agency);
+}
+
+void clientsMenuSelect(Agency &agency) {
+    string str;
+    int opt;
+    bool valid;
+
+    do {
+        getOption(opt);
+        valid = true;
+        switch (opt) {
+            case 0:
+                mainMenu(agency);
+                break;
+            case 3: {
+                newClient(agency);
+                cout << endl << "ENTER to go back";
+                getline(cin, str);
+                clientsMenu(agency);
+                break;
+            }
+            case 4: {
+                removeClient(agency);
+                cout << endl << "ENTER to go back";
+                getline(cin, str);
+                clientsMenu(agency);
+                break;
+            }
+            default:
+                valid = false;
+                cinERR("ERROR: Option does not exist, try again");
+                break;
+        }
+    } while (!valid);
+}
+
 void packetsMenu(Agency &agency) {
     line(35);
     cout << right << setfill(' ') << setw(22) << "PACKETS" << endl;

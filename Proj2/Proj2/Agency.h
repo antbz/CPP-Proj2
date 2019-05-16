@@ -74,6 +74,13 @@ void nSites(Agency &agency, int n);
 
 bool editAgency(Agency &agency);
 
+bool newClient(Agency &agency);
+
+bool editClient(Agency &agency);
+
+bool removeClient(Agency &agency);
+
+
 bool newPacket(Agency &agency);
 
 bool editPacket(Agency &agency);
