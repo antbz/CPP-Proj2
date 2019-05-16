@@ -340,6 +340,80 @@ void nSites(Agency &agency, int n) {
 	}
 }
 
+Packet findPacketBySite(Agency &agency, string site) {
+	vector<Packet> packets = agency.getPackets();
+	vector<pair<Packet, int>> s_packets;
+
+	for (int i = 0; i < packets.size(); i++) {
+		vector<string> sites = packets.at(i).getSites();
+
+		for (int j = 0; j < sites.size(); j++) {
+			if (find(sites.begin(), sites.end(), site) != sites.end()) {
+				s_packets.push_back(make_pair(packets.at(i), packets.at(i).getPricePerPerson()));
+			}
+		}
+	}
+
+	sort(s_packets.begin(), s_packets.end(), [](pair<Packet, int>& a, pair<Packet, int>& b)
+	{
+		return a.second > b.second;
+	}
+	);
+
+	return s_packets.at(0).first;
+}
+
+void suggestedPackets(Agency &agency, int n) {
+	vector<Packet> packets = agency.getPackets();
+	vector<Client> clients = agency.getClients();
+	map<string, int> sites;
+	vector<pair<string, int>> orderedSites;
+	orderedSites.reserve(sites.size());
+
+	for (int i = 0; i < packets.size(); i++) {
+		vector<string> tmp = packets.at(i).getSites();
+		for (int j = 0; j < tmp.size(); j++) {
+			if (sites.find(tmp.at(j)) == sites.end()) {
+				sites[tmp.at(j)] = packets.at(i).getSoldPersons();
+			}
+			else {
+				sites.at(tmp.at(j)) += packets.at(i).getSoldPersons();
+			}
+		}
+	}
+
+	for (auto itr = sites.begin(); itr != sites.end(); itr++) {
+		orderedSites.push_back(*itr);
+	}
+
+	sort(orderedSites.begin(), orderedSites.end(), [](pair<string, int>& a, pair<string, int>& b)
+	{
+		return a.second > b.second;
+	}
+	);
+
+	for (int k = 0; k < clients.size(); k++) {
+		vector<Packet> p_tmp = clients.at(k).getPacketList();
+		vector<string> s_tmp;
+
+		for (int l = 0; l < p_tmp.size(); l++) {
+			vector<string> sites_tmp = p_tmp.at(l).getSites();
+			for (int o = 0; o < sites_tmp.size(); o++) {
+				if (find(s_tmp.begin(), s_tmp.end(), sites_tmp.at(o)) == s_tmp.end()) {
+					s_tmp.push_back(sites_tmp.at(o));
+				}
+			}
+		}
+
+		for (int m = 0; m < n; m++) {
+			if (find(s_tmp.begin(), s_tmp.end(), orderedSites.at(m).first) == s_tmp.end()) {
+				cout << clients.at(k).getName() << " should buy " << findPacketBySite(agency, orderedSites.at(m).first).getId() << endl;
+				break;
+			}
+		}
+	}
+}
+
 bool editAgency(Agency &agency) {
     string name, VATnumber, URL, address_str, clientsFileName, packetsFileName;
     Address address;

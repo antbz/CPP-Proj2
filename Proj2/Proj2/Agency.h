@@ -72,6 +72,10 @@ void salesReport(Agency &agency);
 
 void nSites(Agency &agency, int n);
 
+Packet findPacketBySite(Agency &agency, string site);
+
+void suggestedPackets(Agency &agency, int n);
+
 bool editAgency(Agency &agency);
 
 bool newClient(Agency &agency);
