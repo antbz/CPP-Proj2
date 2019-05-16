@@ -88,12 +88,7 @@ void mainMenuSelect(Agency &agency) {
                 mainMenu(agency);
                 break;
 			case 2: {
-				salesReport(agency);
-				nSites(agency, 7);
-				suggestedPackets(agency, 7);
-				cout << endl << "ENTER to go back";
-				getline(cin, str);
-				mainMenu(agency);
+				insightsMenu(agency);
 				break;
 			}
 			case 3: {
@@ -113,6 +108,63 @@ void mainMenuSelect(Agency &agency) {
 		}
 	} while (!valid);
 }
+
+void insightsMenu(Agency &agency) {
+	line(35);
+	cout << right << setfill(' ') << setw(22) << "INSIGHTS" << endl;
+	line(35);
+	cout << setw(4) << left << '|' << "1. Sales Report" << endl;
+	cout << setw(4) << left << '|' << "2. See N Most Visited Sites" << endl;
+	cout << setw(4) << left << '|' << "3. Client Suggestions Based On N Most Visited Sites" << endl;
+	cout << endl << setw(4) << left << '|' << "0. GO BACK" << endl;
+	line(35);
+
+	insightsMenuSelect(agency);
+}
+
+void insightsMenuSelect(Agency &agency) {
+	string str;
+	string n;
+	int opt;
+	bool valid;
+
+	do {
+		getOption(opt);
+		valid = true;
+		switch (opt) {
+		case 0:
+			mainMenu(agency);
+			break;
+		case 1:
+			salesReport(agency);
+			cout << endl << "ENTER to go back";
+			getline(cin, str);
+			insightsMenu(agency);
+			break;
+		case 2:
+			cout << endl << "How many sites? - ";
+			getline(cin, n);
+			nSites(agency, stoi(n));
+			cout << endl << "ENTER to go back";
+			getline(cin, str);
+			insightsMenu(agency);
+			break;
+		case 3:
+			cout << endl << "How many sites? - ";
+			getline(cin, n);
+			suggestedPackets(agency, stoi(n));
+			cout << endl << "ENTER to go back";
+			getline(cin, str);
+			insightsMenu(agency);
+			break;
+		default:
+			valid = false;
+			cinERR("ERROR: Option does not exist, try again");
+			break;
+		}
+	} while (!valid);
+}
+
 
 void clientsMenu(Agency &agency) {
     line(35);

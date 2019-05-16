@@ -8,7 +8,7 @@
 
 using namespace std;
 
-int mainz() {
+int main() {
 	Agency agency("agency.txt");
 	mainMenu(agency);
 	return 0;

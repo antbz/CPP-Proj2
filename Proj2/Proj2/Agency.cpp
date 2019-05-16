@@ -410,7 +410,7 @@ void suggestedPackets(Agency &agency, int n) {
 
 		for (int m = 0; m < n; m++) {
 			if (find(s_tmp.begin(), s_tmp.end(), orderedSites.at(m).first) == s_tmp.end()) {
-				cout << clients.at(k).getName() << " should buy " << findPacketBySite(agency, orderedSites.at(m).first).getId() << endl;
+				cout << clients.at(k).getName() << " should buy packet " << findPacketBySite(agency, orderedSites.at(m).first).getId() << endl;
 				break;
 			}
 		}

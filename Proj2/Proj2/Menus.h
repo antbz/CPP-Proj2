@@ -18,9 +18,15 @@ void mainMenuSelect(Agency &agency);
 
 void mainMenu(Agency &agency);
 
+<<<<<<< HEAD
+void insightsMenu(Agency &agency);
+
+void insightsMenuSelect(Agency &agency);
+=======
 void clientsMenu(Agency &agency);
 
 void clientsMenuSelect(Agency &agency);
+>>>>>>> ea211146eac926b23fdcbde578d08b9b1007abbf
 
 void packetsMenu(Agency &agency);
 
