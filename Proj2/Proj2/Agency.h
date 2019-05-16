@@ -77,3 +77,14 @@ bool newPacket(Agency &agency);
 bool editPacket(Agency &agency);
 
 bool removePacket(Agency &agency);
+
+bool viewPackets(const Agency &agency);
+
+bool viewPackets(const Agency &agency, const string &site);
+
+bool viewPackets(const Agency &agency, const Date &beginDate, const Date &endDate);
+
+bool viewPackets(const Agency &agency, const Date &beginDate, const Date &endDate, const string &site);
+
+bool viewPackets(const Agency &agency, const int &id);
+

@@ -512,9 +512,127 @@ bool editPacket(Agency &agency) {
     unsigned totalPersons, soldPersons, maxPersons;
     int id;
 
-    cout << setw(2) << ' ' << "EDITING PACK (* - cancel)" << temp_packets.at(packet_pos).getId() << endl;
-    cout << setw(4) << left << '|' << "Destinos (" << sitesVectToStr(temp_packets.at(packet_pos).getSites()) << "): ";
+    cout << "EDITING PACK " << temp_packets.at(packet_pos).getId() << "(* - cancel)" << endl;
 
+    // ID
+    while (true) {
+        try {
+            cout << "| ID (" << temp_packets.at(packet_pos).getId() << "): ";
+            getline(cin, str);
+            if (str == "*") {
+                return false;
+            } else if (str.empty()) {
+                id = temp_packets.at(packet_pos).getId();
+                break;
+            }
+            id = stoi(str);
+            break;
+        } catch (invalid_argument) {
+            cinERR("ERROR: Invalid entry, try again");
+        }
+    }
+
+    // Sites
+    cout << "| Sites (" << sitesVectToStr(temp_packets.at(packet_pos).getSites()) << "): ";
+    getline(cin, sites_str);
+    if (sites_str.empty()) {
+        sites = temp_packets.at(packet_pos).getSites();
+    } else if (sites_str == "*") {
+        return false;
+    } else {
+        sites = sitesStrToVect(sites_str);
+    }
+
+    // Begin date
+    do {
+        cout << "| Begin date (" << temp_packets.at(packet_pos).getBeginDate() << "): ";
+        getline(cin, beginDate_str);
+        if (beginDate_str.empty()) {
+            beginDate = temp_packets.at(packet_pos).getBeginDate();
+            break;
+        } else if (validDate(beginDate_str)) {
+            beginDate = Date(beginDate_str);
+            break;
+        } else if (beginDate_str == "*") {
+            return false;
+        }
+        cinERR("ERROR: Invalid date, use format YYYY/MM/DD");
+    } while (!validDate(beginDate_str));
+
+    // End date
+    do {
+        cout << "| End date (" << temp_packets.at(packet_pos).getEndDate() << "): ";
+        getline(cin, endDate_str);
+        if (endDate_str.empty()) {
+            endDate = temp_packets.at(packet_pos).getEndDate();
+            break;
+        } else if (validDate(endDate_str)) {
+            endDate = Date(endDate_str);
+            break;
+        } else if (endDate_str == "*") {
+            return false;
+        }
+        cinERR("ERROR: Invalid date, use format YYYY/MM/DD");
+    } while (!validDate(endDate_str));
+
+    // Price per person
+    while (true) {
+        try {
+            cout << "| Price per person (" << temp_packets.at(packet_pos).getPricePerPerson() << "): ";
+            getline(cin, str);
+            if (str.empty()) {
+                pricePerPerson = temp_packets.at(packet_pos).getPricePerPerson();
+                break;
+            } else if (str == "*") {
+                return false;
+            }
+            pricePerPerson = stod(str);
+            break;
+        } catch (invalid_argument) {
+            cinERR("ERROR: Invalid price, try again");
+        }
+    }
+
+    // Total seats
+    while (true) {
+        try {
+            cout << "| Total seats (" << temp_packets.at(packet_pos).getTotalPersons() << "): ";
+            getline(cin, str);
+            if (str.empty()) {
+                totalPersons = temp_packets.at(packet_pos).getTotalPersons();
+                break;
+            } else if (str == "*")
+                return false;
+            totalPersons = stoul(str);
+            break;
+        } catch (invalid_argument) {
+            cinERR("ERROR: Invalid entry, try again");
+        }
+    }
+
+    // Sold seats
+    while (true) {
+        try {
+            cout << "| Sold seats (" << temp_packets.at(packet_pos).getSoldPersons() << "): ";
+            getline(cin, str);
+            if (str.empty()) {
+                soldPersons = temp_packets.at(packet_pos).getSoldPersons();
+                break;
+            } else if (str == "*")
+                return false;
+            soldPersons = stoul(str);
+            break;
+        } catch (invalid_argument) {
+            cinERR("ERROR: Invalid entry, try again");
+        }
+    }
+
+    maxPersons = totalPersons - soldPersons;
+
+    if (id > agency.getLastID())
+        agency.setLastID(id);
+    temp_packets.at(packet_pos) = Packet(id, sites, beginDate, endDate, pricePerPerson, totalPersons, soldPersons, maxPersons);
+    agency.setPackets(temp_packets);
 }
 
 bool removePacket(Agency &agency) {

@@ -134,6 +134,13 @@ void packetsMenuSelect(Agency &agency) {
             case 0:
                 mainMenu(agency);
                 break;
+            case 2: {
+                editPacket(agency);
+                cout << endl << "ENTER to go back";
+                getline(cin, str);
+                packetsMenu(agency);
+                break;
+            }
             case 3: {
                 newPacket(agency);
                 cout << endl << "ENTER to go back";
@@ -148,6 +155,41 @@ void packetsMenuSelect(Agency &agency) {
                 packetsMenu(agency);
                 break;
             }
+            default:
+                valid = false;
+                cinERR("ERROR: Option does not exist, try again");
+                break;
+        }
+    } while (!valid);
+}
+
+void viewPacketsMenu(Agency &agency) {
+    line(35);
+    cout << right << setfill(' ') << setw(22) << "DISPLAY PACKS" << endl;
+    line(35);
+    cout << setw(4) << left << '|' << "1. All" << endl;
+    cout << setw(4) << left << '|' << "2. By site" << endl;
+    cout << setw(4) << left << '|' << "3. By date" << endl;
+    cout << setw(4) << left << '|' << "4. By site and date" << endl;
+    cout << setw(4) << left << '|' << "5. By ID" << endl;
+    cout << endl << setw(4) << left << '|' << "0. GO BACK" << endl;
+    line(35);
+
+    viewPacketsMenuSelect(agency);
+}
+
+void viewPacketsMenuSelect(Agency &agency) {
+    string str;
+    int opt;
+    bool valid;
+
+    do {
+        getOption(opt);
+        valid = true;
+        switch (opt) {
+            case 0:
+                packetsMenu(agency);
+                break;
             default:
                 valid = false;
                 cinERR("ERROR: Option does not exist, try again");
