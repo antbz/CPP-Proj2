@@ -70,6 +70,8 @@ bool buyPack(Agency &agency, int c_pos, int p_pos);
 
 void salesReport(Agency &agency);
 
+void nSites(Agency &agency, int n);
+
 bool editAgency(Agency &agency);
 
 bool newPacket(Agency &agency);

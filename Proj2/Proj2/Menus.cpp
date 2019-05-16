@@ -89,6 +89,7 @@ void mainMenuSelect(Agency &agency) {
                 break;
 			case 2: {
 				salesReport(agency);
+				nSites(agency, 3);
 				cout << endl << "ENTER to go back";
 				getline(cin, str);
 				mainMenu(agency);

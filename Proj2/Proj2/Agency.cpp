@@ -306,6 +306,39 @@ void salesReport(Agency &agency) {
     cout << setw(4) << left << '-' << "Value of packets still available: " << vp_sales << endl;
 }
 
+void nSites(Agency &agency, int n) {
+	vector<Packet> packets = agency.getPackets();
+	map<string, int> sites;
+	vector<pair<string, int>> orderedSites;
+	orderedSites.reserve(sites.size());
+
+	for (int i = 0; i < packets.size(); i++) {
+		vector<string> tmp = packets.at(i).getSites();
+		for (int j = 0; j < tmp.size(); j++) {
+			if (sites.find(tmp.at(j)) == sites.end()) {
+				sites[tmp.at(j)] = packets.at(i).getSoldPersons();
+			}
+			else {
+				sites.at(tmp.at(j)) += packets.at(i).getSoldPersons();
+			}
+		}
+	}
+
+	for (auto itr = sites.begin(); itr != sites.end(); itr++) {
+		orderedSites.push_back(*itr);
+	}
+
+	sort(orderedSites.begin(), orderedSites.end(), [](pair<string, int>& a, pair<string, int>& b)
+	{
+		return a.second > b.second;
+	}
+	);
+
+	for (int k = 0; k < n; k++) {
+		cout << k + 1 << " -- " << orderedSites.at(k).first << " || Visits: " << orderedSites.at(k).second << endl;
+	}
+}
+
 bool editAgency(Agency &agency) {
     string name, VATnumber, URL, address_str, clientsFileName, packetsFileName;
     Address address;
