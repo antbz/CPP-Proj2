@@ -1,0 +1,5 @@
+- Implementamos todas as funcionalidades especificadas no enunciado;
+- Implementamos também a funcionalidade de editar a Agência;
+- Ao editar o cliente, é possível alterar a lista dos pacotes, mas esta não influencia os pacotes, ou seja, não se concretiza numa compra;
+- Quando apresenta as sugestões para os clientes, se eles já visitaram todos os n sítios mais visitados, não aparece nem o cliente nem uma sugestão;
+- Implementamos também um pergunta aquando do encerramento, para apenas realizar as alterações feitas se o utilizador quiser.
